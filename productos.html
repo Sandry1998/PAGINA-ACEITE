@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos - Tienda de Aceites</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="icon" href="./elementos-plantilla-diseno-icono-logotipo-aceite-utilizables-logotipos-marca-negocios_968697-312.png">
+    <script src="./carrito.js" defer></script>
+</head>
+<body>
+    <header class="header-tienda">
+        <div class="logo-tienda">
+            <img src="./IMAGENES/OIP2.png" alt="Logo Tienda Aceite" style="width: 120px; height: 120px;">
+            <h1>Tienda de Aceites Premium</h1>
+        </div>
+        <nav class="nav-tienda">
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="historia.html">Historia</a></li>
+                <li><a href="productos.html">Productos</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+                <li><button id="icono-carrito" style="background:none;border:none;cursor:pointer;"><img src="https://cdn-icons-png.flaticon.com/512/1170/1170678.png" alt="Carrito" style="width:32px;height:32px;vertical-align:middle;"></button></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="productos-tienda">
+            <h2>Nuestros Productos</h2>
+            <div style="display:flex;gap:24px;justify-content:center;margin-bottom:32px;">
+                <a href="#botellas" class="btn-enviar" style="padding:12px 28px;">Ver Botellas</a>
+                <a href="#garrafas" class="btn-enviar" style="padding:12px 28px;">Ver Garrafas</a>
+            </div>
+            <div class="productos-grid" id="botellas">
+                <article class="producto-card">
+                    <img src="./IMAGENES/71GEF42hQ+L._AC_SL1500_.png" alt="Aceite Virgen Extra 5L">
+                    <h3>Virgen Extra Ecológico 5L</h3>
+                    <p class="precio">63,90€</p>
+                    <p class="desc">AOVE de alta calidad, ideal para consumo familiar y hostelería. Variedades arbequina y picual, extracción en frío.</p>
+                    <label for="cantidad-eco">Cantidad</label>
+                    <select id="cantidad-eco" name="cantidad-eco">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                    </select>
+                    <button class="btn-comprar">Añadir al carrito</button>
+                </article>
+                <!-- Puedes agregar más productos de botellas aquí -->
+            </div>
+            <h2 id="garrafas" style="margin-top:48px;">Garrafas</h2>
+            <div class="productos-grid">
+                <article class="producto-card">
+                    <img src="./IMAGENES/611JHQWteUL._AC_SL1200_.png" alt="Aceite Picual Oleo Estrella 5L">
+                    <h3>Picual Oleo Estrella 5L</h3>
+                    <p class="precio">45,10€</p>
+                    <p class="desc">AOVE de máxima pureza, color verde dorado, limpio y brillante con finos tonos amargos y picantes.</p>
+                    <label for="cantidad-picual">Cantidad</label>
+                    <select id="cantidad-picual" name="cantidad-picual">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                    </select>
+                    <button class="btn-comprar">Añadir al carrito</button>
+                </article>
+                <article class="producto-card">
+                    <img src="./IMAGENES/71eTGHs9bOL._AC_SL1500_.png" alt="AOVE Arbequina 5L">
+                    <h3>AOVE Arbequina 5L</h3>
+                    <p class="precio">59,00€</p>
+                    <p class="desc">Orgánico prensado en frío, mezcla de hojiblanca, arbequina, cornicabra y picual.</p>
+                    <label for="cantidad-arbequina">Cantidad</label>
+                    <select id="cantidad-arbequina" name="cantidad-arbequina">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                    </select>
+                    <button class="btn-comprar">Añadir al carrito</button>
+                </article>
+            </div>
+        </section>
+    </main>
+    <footer class="footer-tienda">
+        <p>&copy; 2025 Tienda de Aceites Premium. Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>

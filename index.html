@@ -3,21 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tienda de Aceites - Inicio</title>
+    <title>Tienda de Aceites Premium</title>
     <link rel="stylesheet" href="./style.css">
     <link rel="icon" href="./elementos-plantilla-diseno-icono-logotipo-aceite-utilizables-logotipos-marca-negocios_968697-312.png">
+    <script src="./carrito.js" defer></script>
 </head>
 <body>
     <header class="header-tienda">
         <div class="logo-tienda">
-            <img src="./OIP2.png" alt="Logo Tienda Aceite" style="width: 120px; height: 120px;">
+            <img src="./IMAGENES/OIP2.png" alt="Logo Tienda Aceite" style="width: 120px; height: 120px;">
             <h1>Tienda de Aceites Premium</h1>
         </div>
         <nav class="nav-tienda">
             <ul>
-                <li><a href="#historia">Historia</a></li>
-                <li><a href="#productos">Productos</a></li>
-                <li><a href="#contacto">Contacto</a></li>
+                <li><a href="historia.html">Historia</a></li>
+                <li><a href="productos.html">Productos</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+                <li><button id="icono-carrito" style="background:none;border:none;cursor:pointer;"><img src="https://cdn-icons-png.flaticon.com/512/1170/1170678.png" alt="Carrito" style="width:32px;height:32px;vertical-align:middle;"></button></li>
             </ul>
         </nav>
     </header>
@@ -25,48 +27,10 @@
         <h2>Bienvenido a la Tienda de Aceites Premium</h2>
         <p>Descubre la historia, calidad y variedad de nuestros aceites de oliva.</p>
         <img src="./IMAGENES/Borges-aceites.png" alt="Historia Aceite" class="img-hero">
+        <a href="contacto.html" class="btn-enviar" style="display:inline-block;margin-top:24px;">Ir al formulario de contacto</a>
     </section>
     <main>
-        <section id="historia" class="historia-tienda" style="max-width: 900px; margin: 0 auto; padding: 30px 10px;">
-            <h2>Nuestra Historia</h2>
-            <p>
-                El aceite de oliva es un aceite vegetal extraído de los frutos del olivo, utilizado tanto en la cocina como en la cosmética y medicina. Es conocido por sus beneficios para la salud, especialmente por su contenido en grasas monoinsaturadas, que ayudan a reducir el riesgo de enfermedades cardíacas.<br>
-                La primera empresa de aceite de oliva conocida fue fundada en la antigua Roma, aunque no se tiene una fecha exacta, el cultivo del olivo y la producción de su aceite se remontan a miles de años. En tiempos modernos, una de las primeras grandes empresas comerciales de aceite de oliva fue "Aceites Borges", fundada en 1896 en España.
-            </p>
-            <div class="slides" style="display: flex; gap: 18px; justify-content: center; flex-wrap: wrap; margin-top: 18px;">
-                <img src="./antico-2-scaled.png" alt="Imagen 1" style="width: 120px; border-radius: 10px;">
-                <img src="./Borges-aceites.png" alt="Imagen 2" style="width: 120px; border-radius: 10px;">
-                <img src="./historia-1024x414.jpg.png" alt="Imagen 3" style="width: 120px; border-radius: 10px;">
-                <img src="./INFOG_RPET-RV_ESP_2-1-2048x1623.png" alt="Imagen 4" style="width: 120px; border-radius: 10px;">
-            </div>
-        </section>
-        <section id="productos" class="productos-tienda">
-            <h2>Nuestros Productos</h2>
-            <div class="productos-grid">
-                <a href="botella.html" class="producto-card" style="text-decoration:none; color:inherit;">
-                    <img src="./OIP.png" alt="Aceite en Botella">
-                    <h3>Aceites en Botella</h3>
-                    <button class="btn-comprar">Ver producto</button>
-                </a>
-                <a href="garrafa.html" class="producto-card" style="text-decoration:none; color:inherit;">
-                    <img src="./R.png" alt="Aceite en Garrafa">
-                    <h3>Aceites en Garrafa</h3>
-                    <button class="btn-comprar">Ver producto</button>
-                </a>
-            </div>
-        </section>
-        <section id="contacto" class="contacto-tienda">
-            <h2>Contacto</h2>
-            <form class="form-contacto">
-                <label for="nombre">Nombre</label>
-                <input type="text" id="nombre" name="nombre" required>
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" required>
-                <label for="mensaje">Mensaje</label>
-                <textarea id="mensaje" name="mensaje" rows="4" required></textarea>
-                <button type="submit" class="btn-enviar">Enviar</button>
-            </form>
-        </section>
+        <!-- El resto del contenido principal puede ser una breve presentación o destacados, pero la navegación principal ya está en el hero y menú -->
     </main>
     <footer class="footer-tienda">
         <p>&copy; 2025 Tienda de Aceites Premium. Todos los derechos reservados.</p>
