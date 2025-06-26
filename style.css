@@ -1,183 +1,254 @@
+/*
+Estilos modernos y visualmente atractivos para una tienda de aceites premium. Incluye diseño responsivo, tarjetas de producto, cabecera, navegación, hero, ofertas y formulario de contacto.
+*/
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     }
-body{
-    font-family: arial, sans-serif;
-    background-color: #2e9b73;
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    margin: 0;
+    background: #f8f6f1;
+    color: #333;
 }  
-.deslizar{
-    position: relative;
-    width: 100%;
-    max-width: 800px;
-    margin: 0 auto;
-    overflow: hidden;
+.header-tienda {
+    background: #fffbe6;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    padding: 0 0 10px 0;
 }
-.slides {
+.logo-tienda {
     display: flex;
-    transition: transform 0.5s ease;
+    align-items: center;
+    gap: 20px;
+    padding: 20px 40px 0 40px;
 }
-
-.slides img {
-    width: 50%;
-    height: auto;
-    float: right;
-    margin: 120px;
-
+.logo-tienda h1 {
+    font-size: 2.2rem;
+    color: #bfa14a;
+    margin: 0;
 }
-@keyframes slide-animation {
-    0% {
-        transform: translateX(0);
-    }
-    25% {
-        transform: translateX(-100%);
-    }
-    50% {
-        transform: translateX(-200%);
-    }
-    75% {
-        transform: translateX(-300%);
-    }
-    100% {
-        transform: translateX(0);
-    }
-}
-
-.deslizar .slides {
-    animation: slide-animation 20s;
-}
-section{
-    position: relative;
-    width: auto;
-    height: auto;
-    max-width: 800px;
-    margin: 0 auto;
-    overflow: hidden;
+.nav-tienda ul {
     display: flex;
-    padding: 20px;
-
+    gap: 30px;
+    list-style: none;
+    padding: 0 40px;
+    margin: 0;
 }
-section,
-img{
-    margin: auto;
+.nav-tienda a {
+    text-decoration: none;
+    color: #bfa14a;
+    font-weight: bold;
+    font-size: 1.1rem;
+    transition: color 0.2s;
 }
-h1{
+.nav-tienda a:hover {
+    color: #7a5c1e;
+}
+.hero-tienda {
+    background: linear-gradient(90deg, #fffbe6 60%, #f8f6f1 100%);
     text-align: center;
-    position: relative;
-    padding: 50px;
-    font-size: 90px;
-  font-weight: bold;
-    color: #18450f; 
-  text-shadow: 
-    2px 2px 4px rgba(255, 255, 255, 0.8), 
-    -2px -2px 4px rgba(0, 0, 0, 0.4);
+    padding: 40px 10px 30px 10px;
 }
-h2{
-    text-align: center;
-    position: relative;
-    padding: 50px;
-    font-size: 80px;
-  font-weight: bold;
-    color: #18450f; 
-  text-shadow: 
-    2px 2px 4px rgba(255, 255, 255, 0.8), 
-    -2px -2px 4px rgba(0, 0, 0, 0.4);
-    margin: auto;
+.hero-tienda h2 {
+    font-size: 2rem;
+    color: #7a5c1e;
     margin-bottom: 10px;
-    width: 80%;
-    padding: auto;
-    text-align: center;
 }
-h3{
-    margin: 10px;
-    position: center;
+.hero-tienda p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
 }
-.container_productos{
-    width: 50%;
-    position: absolute;
-    margin: 20px;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    padding: 10px;
-    background-color: #c6e9b1;
-    text-align: center;
-    opacity: 0.4;
-    line-height: 1.5;
-    border-radius: 10px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+.img-hero {
+    width: 180px;
+    border-radius: 20px;
+    box-shadow: 0 4px 16px rgba(191,161,74,0.12);
 }
-.clase-botella{
-    position: absolute;
-    text-align: center;
-    margin: 40px;
-    width: auto;
-    height: auto;
-    max-width: 800px;
-    overflow: hidden;
-    display: flex;
-}
-.clase-garrafa{
-    position: absolute;
-    text-align: center;
-    margin: 40px;
-    width: auto;
-    height: auto;
-    max-width: 800px;
-    overflow: hidden;
-    display: flex;
-}
-footer{
-    padding: 20px;
-    background-color: #2f8318;
-    color: black;
-    position: relative;
-    text-align: center;
-    clear: both;
-    width: 80%;
-    max-width: 800px;
+.productos-tienda {
+    padding: 40px 10px 20px 10px;
+    max-width: 1200px;
     margin: auto;
-    border-radius: 10px;
-    justify-content: center;
-    align-items: center;
-
 }
-main{
-    margin: 10px;
-    font-family: Arial, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    padding: 20px;
+.productos-tienda h2 {
+    color: #bfa14a;
     text-align: center;
-    clear: both;
-
+    margin-bottom: 30px;
 }
-
-
-@media screen and (max-width: 768px) {
-    .body {
-      flex-direction: column;
+.productos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    gap: 30px;
+}
+.producto-card {
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 2px 12px rgba(191,161,74,0.08);
+    padding: 24px 18px 18px 18px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.producto-card:hover {
+    transform: translateY(-6px) scale(1.03);
+    box-shadow: 0 8px 24px rgba(191,161,74,0.16);
+}
+.producto-card img {
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
+    margin-bottom: 12px;
+}
+.producto-card h3 {
+    color: #7a5c1e;
+    margin: 0 0 8px 0;
+}
+.precio {
+    color: #bfa14a;
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin: 0 0 8px 0;
+}
+.desc {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 10px;
+    text-align: center;
+}
+.producto-card label {
+    margin-top: 8px;
+    font-size: 0.95rem;
+}
+.producto-card select {
+    margin: 6px 0 12px 0;
+    padding: 4px 8px;
+    border-radius: 6px;
+    border: 1px solid #bfa14a;
+    background: #fffbe6;
+}
+.btn-comprar {
+    background: #bfa14a;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 22px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 8px;
+    transition: background 0.2s;
+}
+.btn-comprar:hover {
+    background: #7a5c1e;
+}
+.ofertas-tienda {
+    background: #fffbe6;
+    padding: 40px 10px;
+    margin-top: 40px;
+}
+.ofertas-tienda h2 {
+    color: #bfa14a;
+    text-align: center;
+    margin-bottom: 30px;
+}
+.oferta-card {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 2px 12px rgba(191,161,74,0.08);
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 18px 24px;
+}
+.oferta-card img {
+    width: 90px;
+    height: 90px;
+    object-fit: contain;
+    border-radius: 12px;
+}
+.precio-oferta {
+    color: #e67e22;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin: 0 0 8px 0;
+}
+.contacto-tienda {
+    padding: 40px 10px 60px 10px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+.contacto-tienda h2 {
+    color: #bfa14a;
+    text-align: center;
+    margin-bottom: 24px;
+}
+.form-contacto {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 2px 12px rgba(191,161,74,0.08);
+    padding: 24px 18px;
+}
+.form-contacto label {
+    color: #7a5c1e;
+    font-weight: 500;
+}
+.form-contacto input, .form-contacto textarea {
+    border: 1px solid #bfa14a;
+    border-radius: 6px;
+    padding: 8px;
+    font-size: 1rem;
+    background: #fffbe6;
+}
+.btn-enviar {
+    background: #bfa14a;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 22px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 8px;
+    transition: background 0.2s;
+}
+.btn-enviar:hover {
+    background: #7a5c1e;
+}
+.footer-tienda {
+    background: #fffbe6;
+    color: #7a5c1e;
+    text-align: center;
+    padding: 18px 0 10px 0;
+    font-size: 1rem;
+    margin-top: 30px;
+    border-top: 1px solid #e2d7b1;
+}
+@media (max-width: 700px) {
+    .logo-tienda {
+        flex-direction: column;
+        gap: 8px;
+        padding: 16px 10px 0 10px;
     }
-    .container_productos{
-        order: 1;
-    min-width: 100%;
+    .nav-tienda ul {
+        gap: 14px;
+        padding: 0 10px;
     }
-   .clase-botella{
-    order: 2;
-    min-width: 100%;
-   }
-.clase-garrafa{
-      order: 2;
-      min-width: 100%;
+    .productos-grid {
+        grid-template-columns: 1fr;
     }
-    footer {
-      order: 4;
-      width: 100%;
+    .oferta-card {
+        flex-direction: column;
+        gap: 12px;
+        padding: 14px 8px;
     }
-    
-  }
+    .contacto-tienda {
+        padding: 24px 4px 40px 4px;
+    }
+}
 
 

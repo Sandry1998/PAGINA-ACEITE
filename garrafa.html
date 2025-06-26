@@ -1,89 +1,111 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VENTA DE ACEITE</title>
+    <title>Tienda de Aceites Premium</title>
     <link rel="stylesheet" href="./style.css">
     <link rel="icon" href="./elementos-plantilla-diseno-icono-logotipo-aceite-utilizables-logotipos-marca-negocios_968697-312.png">
 </head>
 <body>
-    <section class="logo_aceite">
-        <img src="./R.png"  style="width: 300px; height: 300px" alt="Aceite">
-        <h2>ACEITE EN GARRAFA</h2>
-        </section>
-        <body>
-            <main>
-            <div class="aceite-de-virgen-extra">
-            <h3>ACEITE VIRGEN EXTRA 5L ECOLOGICO 5L</h3>
-            <img src="./71GEF42hQ+L._AC_SL1500_.png" alt="IMAGE1">     
-            <div class="venta_botella">
-                <p>Precio: 63,90€</p>
-                <label for="cantidad">CANTIDAD</label>
-                <select id="cantidad">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                </select>
-            </div>
-            <div>
-            <p>
-                AOVE de alta calidad especialmente apropiado para el gran consumo, así como para el sector hostelero, ya que mantiene una excelente relación calidad/precio al tratarse de un aceite de oliva virgen extra de las variedades arbequina
-                y picual de extracción en frío, mediante procesos mecánicos que garantizan que las propiedades organolépticas del aceite permanezcan intactas.
-            </p>
-            </div>
-            <div class="añadir4">
-                <button type="submit" class="reservar">AÑADIR AL CARRITO</button>
-            </div>
-            <div class="aceite-garrafa">
-                <h3>ACEITE PICUAL OLEO ESTRELLA 5L</h3>
-                <img src="./611JHQWteUL._AC_SL1200_.png" alt="IMAGE2">     
-                <div class="venta_botella">
-                    <p>Precio: 45,10€</p>
-                    <label for="cantidad">CANTIDAD</label>
-                    <select id="cantidad">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    </select>
-                
-                <p>
-                    AOVE de categoria superior, aceite de Oliva Virgen Extra de máxima pureza, de color verde dorado, limpio y brillante con finos tonos amargos y picantes.
-                </p>
-                </div>
-                <div class="añadir5">
-                    <button type="submit" class="reservar">AÑADIR AL CARRITO</button>
-                </div>
-                <div class="aove-arbequina">
-                    <h3>AOVE ARBEQUINA 5L</h3>
-                    <img src="./71eTGHs9bOL._AC_SL1500_.png" alt="IMAGE3">     
-                    <div class="venta_botella">
-                        <p>Precio: 59,00€</p>
-                        <label for="cantidad">CANTIDAD</label>
-                        <select id="cantidad">
+    <header class="header-tienda">
+        <div class="logo-tienda">
+            <img src="./R.png" alt="Logo Tienda Aceite" style="width: 120px; height: 120px;">
+            <h1>Tienda de Aceites Premium</h1>
+        </div>
+        <nav class="nav-tienda">
+            <ul>
+                <li><a href="#productos">Productos</a></li>
+                <li><a href="#ofertas">Ofertas</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section class="hero-tienda">
+        <h2>Descubre el mejor Aceite de Oliva Virgen Extra</h2>
+        <p>Calidad, sabor y tradición directamente a tu mesa.</p>
+        <img src="./IMAGENES/aceite-de-oliva-virgen-extra-arbequina-500ml.png" alt="Aceite de Oliva Virgen Extra" class="img-hero">
+    </section>
+    <main>
+        <section id="productos" class="productos-tienda">
+            <h2>Nuestros Productos</h2>
+            <div class="productos-grid">
+                <article class="producto-card">
+                    <img src="./71GEF42hQ+L._AC_SL1500_.png" alt="Aceite Virgen Extra 5L">
+                    <h3>Virgen Extra Ecológico 5L</h3>
+                    <p class="precio">63,90€</p>
+                    <p class="desc">AOVE de alta calidad, ideal para consumo familiar y hostelería. Variedades arbequina y picual, extracción en frío.</p>
+                    <label for="cantidad-eco">Cantidad</label>
+                    <select id="cantidad-eco" name="cantidad-eco">
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
                         <option value="4">4</option>
                         <option value="5">5</option>
                         <option value="6">6</option>
-                        </select>
-                    </div>
-                    <p>
-                        AOVE: Aceite de oliva virgen extra orgánico prensado en frío y filtrado, conservando todas sus propiedades.
-                        VARIEDAD DE ACEITUNAS: Realizado con la mezcla de diferentes variedades de aceitunas, recolectadas cuando están maduras y seleccionadas minuciosamente: hojiblanca, arbequina, cornicabra y picual.
-                    </p>
-                    <div class="añadir6">
-                        <button type="submit" class="reservar">AÑADIR AL CARRITO</button>
-                    </div>
-                
-                </div> 
-            </main>     
-            </body>
-        </html>
+                    </select>
+                    <button class="btn-comprar">Añadir al carrito</button>
+                </article>
+                <article class="producto-card">
+                    <img src="./611JHQWteUL._AC_SL1200_.png" alt="Aceite Picual Oleo Estrella 5L">
+                    <h3>Picual Oleo Estrella 5L</h3>
+                    <p class="precio">45,10€</p>
+                    <p class="desc">AOVE de máxima pureza, color verde dorado, limpio y brillante con finos tonos amargos y picantes.</p>
+                    <label for="cantidad-picual">Cantidad</label>
+                    <select id="cantidad-picual" name="cantidad-picual">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                    </select>
+                    <button class="btn-comprar">Añadir al carrito</button>
+                </article>
+                <article class="producto-card">
+                    <img src="./71eTGHs9bOL._AC_SL1500_.png" alt="AOVE Arbequina 5L">
+                    <h3>AOVE Arbequina 5L</h3>
+                    <p class="precio">59,00€</p>
+                    <p class="desc">Orgánico prensado en frío, mezcla de hojiblanca, arbequina, cornicabra y picual.</p>
+                    <label for="cantidad-arbequina">Cantidad</label>
+                    <select id="cantidad-arbequina" name="cantidad-arbequina">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                    </select>
+                    <button class="btn-comprar">Añadir al carrito</button>
+                </article>
+            </div>
+        </section>
+        <section id="ofertas" class="ofertas-tienda">
+            <h2>Ofertas Especiales</h2>
+            <div class="oferta-card">
+                <img src="./IMAGENES/aceite-de-oliva-virgen-extra-cornicabra-500-ml.png" alt="Oferta Cornicabra">
+                <div>
+                    <h3>Pack Degustación Cornicabra 3x500ml</h3>
+                    <p class="precio-oferta">Sólo 24,90€</p>
+                    <button class="btn-comprar">¡Lo quiero!</button>
+                </div>
+            </div>
+        </section>
+        <section id="contacto" class="contacto-tienda">
+            <h2>Contacto</h2>
+            <form class="form-contacto">
+                <label for="nombre">Nombre</label>
+                <input type="text" id="nombre" name="nombre" required>
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+                <label for="mensaje">Mensaje</label>
+                <textarea id="mensaje" name="mensaje" rows="4" required></textarea>
+                <button type="submit" class="btn-enviar">Enviar</button>
+            </form>
+        </section>
+    </main>
+    <footer class="footer-tienda">
+        <p>&copy; 2025 Tienda de Aceites Premium. Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>
