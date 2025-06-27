@@ -62,3 +62,70 @@ function vaciarCarrito() {
     localStorage.removeItem('carritoAceite');
     mostrarCarrito();
 }
+
+// Muestra el modal del carrito y gestiona los productos seleccionados usando localStorage
+function renderizarCarrito() {
+    const carritoLista = document.getElementById('carrito-lista');
+    const contador = document.getElementById('contador-carrito');
+    const carrito = JSON.parse(localStorage.getItem('carrito') || '[]');
+    let totalCantidad = 0;
+    let totalPrecio = 0;
+    if (!carritoLista) return;
+    if (carrito.length === 0) {
+        carritoLista.innerHTML = '<p style="color:#bfa14a;text-align:center;">No hay productos en el carrito.</p>';
+        if (contador) {
+            contador.textContent = '';
+            contador.style.display = 'none';
+        }
+        return;
+    }
+    carritoLista.innerHTML = carrito.map(item => {
+        const precio = item.precio ? Number(item.precio) : 0;
+        totalCantidad += Number(item.cantidad);
+        totalPrecio += precio * Number(item.cantidad);
+        return `<div style='margin-bottom:10px;'><b>${item.nombre}</b> x${item.cantidad} <span style='color:#bfa14a;'>${item.tipo ? item.tipo : ''}</span> <span style='float:right;'>${precio.toFixed(2)}€</span></div>`;
+    }).join('');
+    carritoLista.innerHTML += `<div style='border-top:1px solid #bfa14a33;margin-top:12px;padding-top:10px;text-align:right;font-weight:700;color:#bfa14a;'>Total: ${totalPrecio.toFixed(2)} €</div>`;
+    if (contador) {
+        contador.textContent = totalCantidad > 0 ? totalCantidad : '';
+        contador.style.display = totalCantidad > 0 ? 'inline-block' : 'none';
+    }
+}
+
+function inicializarCarrito() {
+    const iconoCarrito = document.getElementById('icono-carrito');
+    const modalCarrito = document.getElementById('modal-carrito');
+    const cerrarCarrito = document.getElementById('cerrar-carrito');
+    const vaciarCarrito = document.getElementById('vaciar-carrito');
+    if (!iconoCarrito || !modalCarrito) return;
+
+    iconoCarrito.addEventListener('click', e => {
+        e.preventDefault();
+        renderizarCarrito();
+        modalCarrito.style.display = 'flex';
+    });
+    if (cerrarCarrito) {
+        cerrarCarrito.addEventListener('click', () => {
+            modalCarrito.style.display = 'none';
+        });
+    }
+    if (vaciarCarrito) {
+        vaciarCarrito.addEventListener('click', () => {
+            localStorage.removeItem('carrito');
+            renderizarCarrito();
+        });
+    }
+    // Cerrar modal al hacer clic fuera
+    modalCarrito.addEventListener('click', e => {
+        if (e.target === modalCarrito) modalCarrito.style.display = 'none';
+    });
+    // Actualizar contador al cargar
+    renderizarCarrito();
+}
+
+// Escuchar cambios en localStorage desde otras pestañas o páginas
+window.addEventListener('storage', function(e) {
+    if (e.key === 'carrito') renderizarCarrito();
+});
+
+document.addEventListener('DOMContentLoaded', inicializarCarrito);

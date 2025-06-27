@@ -50,6 +50,10 @@
             align-items: center;
             display: flex;
             gap: 36px;
+            justify-content: center;
+        }
+        .nav-tienda ul li {
+            text-align: center;
         }
         .nav-tienda a, .nav-tienda button {
             font-size: 1.08rem;
@@ -77,6 +81,14 @@
             color: #bfa14a;
             text-decoration: underline;
         }
+        h2 {
+            font-size: 2.6rem !important;
+            font-weight: 900;
+            letter-spacing: 1px;
+            color: #bfa14a;
+            margin-bottom: 18px;
+            text-transform: uppercase;
+        }
         @media (max-width: 900px) {
             .nav-tienda ul {
                 flex-direction: column;
@@ -102,8 +114,16 @@
             <ul>
                 <li><a href="index.html">Inicio</a></li>
                 <li><a href="historia.html">Historia</a></li>
+                <li class="dropdown-productos" style="position:relative;">
+                    <a href="garrafa.html" style="cursor:pointer;display:flex;align-items:center;gap:6px;font-weight:600;font-size:1.08rem;transition:color 0.2s;">
+                        Garrafas
+                    </a>
+                </li>
                 <li><a href="contacto.html">Contacto</a></li>
-                <li><button id="icono-carrito" style="background:none;border:none;cursor:pointer;"><img src="https://cdn-icons-png.flaticon.com/512/1170/1170678.png" alt="Carrito" style="width:32px;height:32px;vertical-align:middle;"></button></li>
+                <li><button id="icono-carrito" style="background:none;border:none;cursor:pointer;position:relative;">
+                    <img src="https://cdn-icons-png.flaticon.com/512/1170/1170678.png" alt="Carrito" style="width:32px;height:32px;vertical-align:middle;">
+                    <span id="contador-carrito" style="display:none;position:absolute;top:0;right:0;background:#bfa14a;color:#fff;font-size:0.95em;font-weight:700;border-radius:50%;padding:2px 7px;min-width:22px;text-align:center;line-height:1;box-shadow:0 2px 8px #bfa14a33;">0</span>
+                </button></li>
             </ul>
         </nav>
     </header>
@@ -165,6 +185,117 @@
             </div>
         </section>
     </main>
+    <div id="modal-carrito" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:#0007;z-index:1000;align-items:center;justify-content:center;">
+        <div style="background:#fff8e1;padding:32px 24px 24px 24px;border-radius:18px;max-width:400px;width:90vw;box-shadow:0 8px 32px #bfa14a55;position:relative;">
+            <button id="cerrar-carrito" style="position:absolute;top:12px;right:16px;background:none;border:none;font-size:1.5em;color:#bfa14a;cursor:pointer;">&times;</button>
+            <h3 style="color:#bfa14a;text-align:center;margin-bottom:18px;">Carrito de compras</h3>
+            <div id="carrito-lista" style="min-height:60px;text-align:left;"></div>
+            <button id="vaciar-carrito" style="margin-top:18px;background:#bfa14a;color:#fff;border:none;padding:10px 24px;border-radius:8px;cursor:pointer;float:right;">Vaciar carrito</button>
+        </div>
+    </div>
+    <script src="./carrito.js"></script>
+    <script>
+        // Menú desplegable para Productos (click/tap y accesible)
+        document.querySelectorAll('.dropdown-productos').forEach(function(dropdown) {
+            const link = dropdown.querySelector('a');
+            const submenu = dropdown.querySelector('.submenu-productos');
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const isOpen = submenu.style.display === 'block';
+                submenu.style.display = isOpen ? 'none' : 'block';
+                dropdown.classList.toggle('open', !isOpen);
+            });
+            document.addEventListener('click', function(e) {
+                if (!dropdown.contains(e.target)) {
+                    submenu.style.display = 'none';
+                    dropdown.classList.remove('open');
+                }
+            });
+            link.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    submenu.style.display = 'none';
+                    dropdown.classList.remove('open');
+                    link.blur();
+                }
+            });
+        });
+
+        // --- SISTEMA AÑADIR AL CARRITO ---
+        document.querySelectorAll('.producto-card').forEach(card => {
+            const btn = card.querySelector('.btn-comprar');
+            btn.addEventListener('click', function() {
+                const nombre = card.querySelector('h3').textContent.trim();
+                const tipo = 'Botella';
+                const precioTexto = card.querySelector('.precio').textContent.trim().replace('€','').replace(',','.');
+                const precio = parseFloat(precioTexto);
+                const select = card.querySelector('select');
+                const cantidad = parseInt(select.value);
+                if (cantidad > 0) {
+                    let carrito = JSON.parse(localStorage.getItem('carrito') || '[]');
+                    // Si ya existe el producto, suma la cantidad
+                    let existe = carrito.find(item => item.nombre === nombre && item.tipo === tipo && item.precio === precio);
+                    if (existe) {
+                        existe.cantidad += cantidad;
+                    } else {
+                        carrito.push({ nombre, tipo, precio, cantidad });
+                    }
+                    localStorage.setItem('carrito', JSON.stringify(carrito));
+                    // Reset select
+                    select.value = '0';
+                    // Actualiza contador
+                    if (typeof actualizarContadorCarrito === 'function') actualizarContadorCarrito();
+                }
+            });
+        });
+        // Carrito: mostrar productos seleccionados en modal
+        const iconoCarrito = document.getElementById('icono-carrito');
+        const modalCarrito = document.getElementById('modal-carrito');
+        const cerrarCarrito = document.getElementById('cerrar-carrito');
+        const vaciarCarrito = document.getElementById('vaciar-carrito');
+        const carritoLista = document.getElementById('carrito-lista');
+        const contadorCarrito = document.getElementById('contador-carrito');
+
+        function actualizarContadorCarrito() {
+            const carrito = JSON.parse(localStorage.getItem('carrito') || '[]');
+            const totalItems = carrito.reduce((acc, item) => acc + Number(item.cantidad), 0);
+            contadorCarrito.textContent = totalItems;
+            contadorCarrito.style.display = totalItems > 0 ? 'block' : 'none';
+        }
+
+        function renderizarCarrito() {
+            const carrito = JSON.parse(localStorage.getItem('carrito') || '[]');
+            let total = 0;
+            if (carrito.length === 0) {
+                carritoLista.innerHTML = '<p style="color:#bfa14a;text-align:center;">No hay productos en el carrito.</p>';
+            } else {
+                carritoLista.innerHTML = carrito.map(item => {
+                    const precio = item.precio ? Number(item.precio) : 0;
+                    total += precio * Number(item.cantidad);
+                    return `<div style='margin-bottom:10px;'><b>${item.nombre}</b> x${item.cantidad} <span style='color:#bfa14a;'>${item.tipo}</span> <span style='float:right;'>${precio.toFixed(2)}€</span></div>`;
+                }).join('');
+                carritoLista.innerHTML += `<div style='border-top:1px solid #bfa14a33;margin-top:12px;padding-top:10px;text-align:right;font-weight:700;color:#bfa14a;'>Total: ${total.toFixed(2)} €</div>`;
+            }
+        }
+        iconoCarrito.addEventListener('click', e => {
+            e.preventDefault();
+            renderizarCarrito();
+            modalCarrito.style.display = 'flex';
+        });
+        cerrarCarrito.addEventListener('click', () => {
+            modalCarrito.style.display = 'none';
+        });
+        vaciarCarrito.addEventListener('click', () => {
+            localStorage.removeItem('carrito');
+            renderizarCarrito();
+            actualizarContadorCarrito();
+        });
+        // Cerrar modal al hacer clic fuera
+        modalCarrito.addEventListener('click', e => {
+            if (e.target === modalCarrito) modalCarrito.style.display = 'none';
+        });
+        // Inicializar contador de carrito
+        actualizarContadorCarrito();
+    </script>
     <footer class="footer-tienda">
         <p>&copy; 2025 Tienda de Aceites Premium. Todos los derechos reservados.</p>
     </footer>
