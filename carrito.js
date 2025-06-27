@@ -83,7 +83,7 @@ function renderizarCarrito() {
         const precio = item.precio ? Number(item.precio) : 0;
         totalCantidad += Number(item.cantidad);
         totalPrecio += precio * Number(item.cantidad);
-        return `<div style='margin-bottom:10px;'><b>${item.nombre}</b> x${item.cantidad} <span style='color:#bfa14a;'>${item.tipo ? item.tipo : ''}</span> <span style='float:right;'>${precio.toFixed(2)}€</span></div>`;
+        return `<div style='margin-bottom:10px;'><b>${item.nombre}</b> x${item.cantidad} <span style='float:right;'>${precio.toFixed(2)}€</span></div>`;
     }).join('');
     carritoLista.innerHTML += `<div style='border-top:1px solid #bfa14a33;margin-top:12px;padding-top:10px;text-align:right;font-weight:700;color:#bfa14a;'>Total: ${totalPrecio.toFixed(2)} €</div>`;
     if (contador) {

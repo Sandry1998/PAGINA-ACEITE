@@ -102,6 +102,19 @@
                 height: 90px;
             }
         }
+        /* Mostrar el submenú siempre visible si .open está presente */
+        .dropdown-productos.open .submenu-productos {
+            display: block !important;
+            box-shadow: 0 4px 16px #bfa14a33;
+            border-radius: 12px;
+            background: #fffbe6;
+            border: 1px solid #bfa14a22;
+            z-index: 10;
+        }
+        @keyframes arrow-bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(12px); }
+        }
     </style>
 </head>
 <body>
@@ -114,11 +127,6 @@
             <ul>
                 <li><a href="index.html">Inicio</a></li>
                 <li><a href="historia.html">Historia</a></li>
-                <li class="dropdown-productos" style="position:relative;">
-                    <a href="botella.html" style="cursor:pointer;display:flex;align-items:center;gap:6px;font-weight:600;font-size:1.08rem;transition:color 0.2s;">
-                        Botellas
-                    </a>
-                </li>
                 <li><a href="contacto.html">Contacto</a></li>
                 <li><button id="icono-carrito" style="background:none;border:none;cursor:pointer;position:relative;">
                     <img src="https://cdn-icons-png.flaticon.com/512/1170/1170678.png" alt="Carrito" style="width:32px;height:32px;vertical-align:middle;">
@@ -184,6 +192,12 @@
                 </article>
             </div>
         </section>
+        <div style="text-align:center;margin:40px 0 0 0;">
+            <a href="botella.html" style="display:inline-block;text-decoration:none;color:#bfa14a;font-size:3.5rem;transition:color 0.2s;line-height:1;" title="Ir a Botellas">
+                <span style="display:inline-block;animation:arrow-bounce 1.2s infinite;">&#x2B07;</span><br>
+                <span style="font-size:1.25rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;">Botellas Disponibles</span>
+            </a>
+        </div>
     </main>
     <div id="modal-carrito" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:#0007;z-index:1000;align-items:center;justify-content:center;">
         <div style="background:#fff8e1;padding:32px 24px 24px 24px;border-radius:18px;max-width:400px;width:90vw;box-shadow:0 8px 32px #bfa14a55;position:relative;">
@@ -193,107 +207,76 @@
             <button id="vaciar-carrito" style="margin-top:18px;background:#bfa14a;color:#fff;border:none;padding:10px 24px;border-radius:8px;cursor:pointer;float:right;">Vaciar carrito</button>
         </div>
     </div>
-    <script src="./carrito.js"></script>
     <script>
-        // Menú desplegable para Productos (click/tap y accesible)
-        document.querySelectorAll('.dropdown-productos').forEach(function(dropdown) {
-            const link = dropdown.querySelector('a');
-            const submenu = dropdown.querySelector('.submenu-productos');
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                const isOpen = submenu.style.display === 'block';
-                submenu.style.display = isOpen ? 'none' : 'block';
-                dropdown.classList.toggle('open', !isOpen);
-            });
-            document.addEventListener('click', function(e) {
-                if (!dropdown.contains(e.target)) {
-                    submenu.style.display = 'none';
-                    dropdown.classList.remove('open');
+    // --- SISTEMA AÑADIR AL CARRITO ---
+    document.querySelectorAll('.producto-card').forEach(card => {
+        const btn = card.querySelector('.btn-comprar');
+        btn.addEventListener('click', function() {
+            const nombre = card.querySelector('h3').textContent.trim();
+            const precioTexto = card.querySelector('.precio').textContent.trim().replace('€','').replace(',','.');
+            const precio = parseFloat(precioTexto);
+            const select = card.querySelector('select');
+            const cantidad = parseInt(select.value);
+            if (cantidad > 0) {
+                let carrito = JSON.parse(localStorage.getItem('carrito') || '[]');
+                let existe = carrito.find(item => item.nombre === nombre && item.precio === precio);
+                if (existe) {
+                    existe.cantidad += cantidad;
+                } else {
+                    carrito.push({ nombre, precio, cantidad });
                 }
-            });
-            link.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape') {
-                    submenu.style.display = 'none';
-                    dropdown.classList.remove('open');
-                    link.blur();
-                }
-            });
-        });
-        // --- SISTEMA AÑADIR AL CARRITO ---
-        document.querySelectorAll('.producto-card').forEach(card => {
-            const btn = card.querySelector('.btn-comprar');
-            btn.addEventListener('click', function() {
-                const nombre = card.querySelector('h3').textContent.trim();
-                const tipo = 'Garrafa';
-                const precioTexto = card.querySelector('.precio').textContent.trim().replace('€','').replace(',','.');
-                const precio = parseFloat(precioTexto);
-                const select = card.querySelector('select');
-                const cantidad = parseInt(select.value);
-                if (cantidad > 0) {
-                    let carrito = JSON.parse(localStorage.getItem('carrito') || '[]');
-                    // Si ya existe el producto, suma la cantidad
-                    let existe = carrito.find(item => item.nombre === nombre && item.tipo === tipo && item.precio === precio);
-                    if (existe) {
-                        existe.cantidad += cantidad;
-                    } else {
-                        carrito.push({ nombre, tipo, precio, cantidad });
-                    }
-                    localStorage.setItem('carrito', JSON.stringify(carrito));
-                    // Reset select
-                    select.value = '0';
-                    // Actualiza contador
-                    if (typeof actualizarContadorCarrito === 'function') actualizarContadorCarrito();
-                }
-            });
-        });
-        // Carrito: mostrar productos seleccionados en modal
-        const iconoCarrito = document.getElementById('icono-carrito');
-        const modalCarrito = document.getElementById('modal-carrito');
-        const cerrarCarrito = document.getElementById('cerrar-carrito');
-        const vaciarCarrito = document.getElementById('vaciar-carrito');
-        const carritoLista = document.getElementById('carrito-lista');
-        const contadorCarrito = document.getElementById('contador-carrito');
-
-        function actualizarContadorCarrito() {
-            const carrito = JSON.parse(localStorage.getItem('carrito') || '[]');
-            const totalItems = carrito.reduce((acc, item) => acc + Number(item.cantidad), 0);
-            contadorCarrito.textContent = totalItems;
-            contadorCarrito.style.display = totalItems > 0 ? 'block' : 'none';
-        }
-
-        function renderizarCarrito() {
-            const carrito = JSON.parse(localStorage.getItem('carrito') || '[]');
-            let total = 0;
-            if (carrito.length === 0) {
-                carritoLista.innerHTML = '<p style="color:#bfa14a;text-align:center;">No hay productos en el carrito.</p>';
-            } else {
-                carritoLista.innerHTML = carrito.map(item => {
-                    const precio = item.precio ? Number(item.precio) : 0;
-                    total += precio * Number(item.cantidad);
-                    return `<div style='margin-bottom:10px;'><b>${item.nombre}</b> x${item.cantidad} <span style='color:#bfa14a;'>${item.tipo}</span> <span style='float:right;'>${precio.toFixed(2)}€</span></div>`;
-                }).join('');
-                carritoLista.innerHTML += `<div style='border-top:1px solid #bfa14a33;margin-top:12px;padding-top:10px;text-align:right;font-weight:700;color:#bfa14a;'>Total: ${total.toFixed(2)} €</div>`;
+                localStorage.setItem('carrito', JSON.stringify(carrito));
+                select.value = '0';
+                if (typeof actualizarContadorCarrito === 'function') actualizarContadorCarrito();
             }
+        });
+    });
+    // Carrito: mostrar productos seleccionados en modal
+    const iconoCarrito = document.getElementById('icono-carrito');
+    const modalCarrito = document.getElementById('modal-carrito');
+    const cerrarCarrito = document.getElementById('cerrar-carrito');
+    const vaciarCarrito = document.getElementById('vaciar-carrito');
+    const carritoLista = document.getElementById('carrito-lista');
+    const contadorCarrito = document.getElementById('contador-carrito');
+
+    function actualizarContadorCarrito() {
+        const carrito = JSON.parse(localStorage.getItem('carrito') || '[]');
+        const totalItems = carrito.reduce((acc, item) => acc + Number(item.cantidad), 0);
+        contadorCarrito.textContent = totalItems;
+        contadorCarrito.style.display = totalItems > 0 ? 'block' : 'none';
+    }
+
+    function renderizarCarrito() {
+        const carrito = JSON.parse(localStorage.getItem('carrito') || '[]');
+        let total = 0;
+        if (carrito.length === 0) {
+            carritoLista.innerHTML = '<p style="color:#bfa14a;text-align:center;">No hay productos en el carrito.</p>';
+        } else {
+            carritoLista.innerHTML = carrito.map(item => {
+                const precio = item.precio ? Number(item.precio) : 0;
+                total += precio * Number(item.cantidad);
+                return `<div style='margin-bottom:10px;'><b>${item.nombre}</b> x${item.cantidad} <span style='float:right;'>${precio.toFixed(2)}€</span></div>`;
+            }).join('');
+            carritoLista.innerHTML += `<div style='border-top:1px solid #bfa14a33;margin-top:12px;padding-top:10px;text-align:right;font-weight:700;color:#bfa14a;'>Total: ${total.toFixed(2)} €</div>`;
         }
-        iconoCarrito.addEventListener('click', e => {
-            e.preventDefault();
-            renderizarCarrito();
-            modalCarrito.style.display = 'flex';
-        });
-        cerrarCarrito.addEventListener('click', () => {
-            modalCarrito.style.display = 'none';
-        });
-        vaciarCarrito.addEventListener('click', () => {
-            localStorage.removeItem('carrito');
-            renderizarCarrito();
-            actualizarContadorCarrito();
-        });
-        // Cerrar modal al hacer clic fuera
-        modalCarrito.addEventListener('click', e => {
-            if (e.target === modalCarrito) modalCarrito.style.display = 'none';
-        });
-        // Inicializar contador de carrito
+    }
+    iconoCarrito.addEventListener('click', e => {
+        e.preventDefault();
+        renderizarCarrito();
+        modalCarrito.style.display = 'flex';
+    });
+    cerrarCarrito.addEventListener('click', () => {
+        modalCarrito.style.display = 'none';
+    });
+    vaciarCarrito.addEventListener('click', () => {
+        localStorage.removeItem('carrito');
+        renderizarCarrito();
         actualizarContadorCarrito();
+    });
+    modalCarrito.addEventListener('click', e => {
+        if (e.target === modalCarrito) modalCarrito.style.display = 'none';
+    });
+    actualizarContadorCarrito();
     </script>
     <footer class="footer-tienda">
         <p>&copy; 2025 Tienda de Aceites Premium. Todos los derechos reservados.</p>
