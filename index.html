@@ -3,21 +3,161 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tienda de Aceites Premium</title>
+    <title>TIENDA DE ACEITES PREMIUM</title>
     <link rel="stylesheet" href="./style.css">
-    <link rel="icon" href="./favicon.png">
-    <script src="./carrito.js" defer></script>
+    <link rel="icon" href="./IMAGENES/favicon.png">
+    <style>
+        /* Moderno para el menú desplegable */
+        .dropdown-productos:hover > a, .dropdown-productos:focus-within > a {
+            color: #bfa14a;
+        }
+        .submenu-productos li a:hover, .submenu-productos li a:focus {
+            background: #bfa14a;
+            color: #fff;
+        }
+        .dropdown-productos > a span {
+            display:inline-block;
+            transition: transform 0.2s;
+        }
+        .dropdown-productos:hover > a span, .dropdown-productos:focus-within > a span {
+            transform: rotate(180deg);
+        }
+        /* Mejoras generales */
+        body {
+            background: linear-gradient(120deg, #fffbe6 0%, #f7ecd0 100%);
+            font-family: 'Segoe UI', 'Arial', sans-serif;
+            color: #3a2c13;
+            margin: 0;
+            min-height: 100vh;
+        }
+        .header-tienda {
+            border-bottom: 2px solid #bfa14a22;
+            box-shadow: 0 2px 16px #bfa14a11;
+            padding-bottom: 0;
+        }
+        .logo-tienda img {
+            transition: transform 0.2s;
+        }
+        .logo-tienda img:hover {
+            transform: scale(1.07) rotate(-3deg);
+        }
+        .nav-tienda ul {
+            background: #fff8e1;
+            padding: 18px 40px;
+            border-radius: 18px;
+            box-shadow: 0 2px 16px #bfa14a22;
+            align-items: center;
+            display: flex;
+            gap: 36px;
+        }
+        .nav-tienda a, .nav-tienda button {
+            font-size: 1.08rem;
+            font-weight: 600;
+            color: #3a2c13;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .nav-tienda a:hover, .nav-tienda button:hover {
+            color: #bfa14a;
+        }
+        .hero-tienda {
+            margin: 0 auto;
+            padding: 48px 0 32px 0;
+            text-align: center;
+        }
+        .hero-tienda h2 {
+            color: #bfa14a;
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 8px #bfa14a22;
+        }
+        .hero-tienda p {
+            font-size: 1.18rem;
+            margin-bottom: 32px;
+            color: #6b5b2c;
+        }
+        .galeria-hero {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 28px;
+            justify-content: center;
+            align-items: center;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .galeria-hero img {
+            width: 280px;
+            height: 200px;
+            object-fit: contain;
+            border-radius: 18px;
+            box-shadow: 0 4px 24px #bfa14a33, 0 1.5px 8px #0001;
+            background: #fff;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .galeria-hero img:hover {
+            transform: scale(1.04) rotate(-2deg);
+            box-shadow: 0 8px 32px #bfa14a55, 0 2px 12px #0002;
+        }
+        main {
+            min-height: 120px;
+        }
+        .footer-tienda {
+            background: #fff8e1;
+            color: #bfa14a;
+            text-align: center;
+            padding: 24px 0 8px 0;
+            border-top: 2px solid #bfa14a22;
+            font-size: 1.08rem;
+            margin-top: 48px;
+        }
+        .footer-tienda a {
+            color: #bfa14a;
+            text-decoration: underline;
+        }
+        @media (max-width: 900px) {
+            .galeria-hero img {
+                width: 180px;
+                height: 120px;
+            }
+            .nav-tienda ul {
+                flex-direction: column;
+                gap: 18px;
+                padding: 18px 10px;
+            }
+        }
+        @media (max-width: 600px) {
+            .logo-tienda img {
+                width: 90px;
+                height: 90px;
+            }
+            .galeria-hero img {
+                width: 120px;
+                height: 80px;
+            }
+            .hero-tienda {
+                padding: 24px 0 16px 0;
+            }
+        }
+    </style>
 </head>
 <body>
-    <header class="header-tienda">
-        <div class="logo-tienda">
-            <img src="./IMAGENES/OIP2.png" alt="Logo Tienda Aceite" style="width: 120px; height: 120px;">
-            <h1>Tienda de Aceites Premium</h1>
+    <header class="header-tienda" style="background: #fff;">
+        <div class="logo-tienda" style="display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0 auto 12px auto;">
+            <img src="./IMAGENES/logo.png" alt="Logo Tienda Aceite" style="width: 140px; height: 140px; margin-bottom: 8px; filter: drop-shadow(0 4px 16px #bfa14a88);">
+            <h1 style="text-align:center;color:#bfa14a;font-size:2.5rem;font-weight:900;letter-spacing:1.5px;text-shadow:0 2px 12px #bfa14a33,0 1px 0 #fff;">TIENDA DE ACEITES PREMIUM</h1>
         </div>
-        <nav class="nav-tienda">
-            <ul>
+        <nav class="nav-tienda" style="margin-top:32px;display:flex;justify-content:center;">
+            <ul style="display:flex;gap:36px;background:#fff8e1;padding:18px 40px;border-radius:18px;box-shadow:0 2px 16px #bfa14a22;align-items:center;">
                 <li><a href="historia.html">Historia</a></li>
-                <li><a href="productos.html">Productos</a></li>
+                <li class="dropdown-productos" style="position:relative;">
+                    <a href="#" style="cursor:pointer;display:flex;align-items:center;gap:6px;font-weight:600;font-size:1.08rem;transition:color 0.2s;">Productos <span style="font-size:1.1em;transition:transform 0.2s;">&#9662;</span></a>
+                    <ul class="submenu-productos" style="display:none;position:absolute;top:110%;left:0;background:rgba(255,255,255,0.98);border-radius:12px;box-shadow:0 8px 32px #bfa14a55,0 1.5px 8px #0001;padding:0;margin:0;min-width:180px;z-index:20;overflow:hidden;">
+                        <li><a href="botella.html" style="display:block;padding:16px 32px;color:#222;text-decoration:none;font-weight:500;transition:background 0.2s, color 0.2s;">Botellas</a></li>
+                        <li><a href="garrafa.html" style="display:block;padding:16px 32px;color:#222;text-decoration:none;font-weight:500;transition:background 0.2s, color 0.2s;">Garrafas</a></li>
+                    </ul>
+                </li>
                 <li><a href="contacto.html">Contacto</a></li>
                 <li><button id="icono-carrito" style="background:none;border:none;cursor:pointer;"><img src="https://cdn-icons-png.flaticon.com/512/1170/1170678.png" alt="Carrito" style="width:32px;height:32px;vertical-align:middle;"></button></li>
             </ul>
@@ -26,8 +166,12 @@
     <section class="hero-tienda">
         <h2>Bienvenido a la Tienda de Aceites Premium</h2>
         <p>Descubre la historia, calidad y variedad de nuestros aceites de oliva.</p>
-        <img src="./IMAGENES/Borges-aceites.png" alt="Historia Aceite" class="img-hero">
-        <a href="contacto.html" class="btn-enviar" style="display:inline-block;margin-top:24px;">Ir al formulario de contacto</a>
+        <div class="galeria-hero" style="display:flex;flex-wrap:wrap;gap:24px;justify-content:center;align-items:center;max-width:1000px;margin:0 auto;">
+            <img src="./IMAGENES/Borges-aceites.png" alt="Borges Aceites" style="width:260px;height:180px;object-fit:contain;border-radius:16px;box-shadow:0 4px 16px #0002;">
+            <img src="./IMAGENES/historia.png" alt="Historia Aceite" style="width:260px;height:180px;object-fit:contain;border-radius:16px;box-shadow:0 4px 16px #0002;">
+            <img src="./IMAGENES/señoras.png" alt="Señoras Aceite" style="width:260px;height:180px;object-fit:contain;border-radius:16px;box-shadow:0 4px 16px #0002;">
+            <img src="./IMAGENES/vidrioplastico.png" alt="Vidroplastico" style="width:260px;height:180px;object-fit:contain;border-radius:16px;box-shadow:0 4px 16px #0002;">
+        </div>
     </section>
     <main>
         <!-- El resto del contenido principal puede ser una breve presentación o destacados, pero la navegación principal ya está en el hero y menú -->
@@ -38,5 +182,12 @@
             <li><a href="https://borges.es/politica-de-privacidad/" style="color:#bfa14a;">Política de Privacidad</a></li>
         </ul>
     </footer>
+    <script>
+        // Menú desplegable para Productos
+        const dropdown = document.querySelector('.dropdown-productos');
+        const submenu = dropdown.querySelector('.submenu-productos');
+        dropdown.addEventListener('mouseenter', () => submenu.style.display = 'block');
+        dropdown.addEventListener('mouseleave', () => submenu.style.display = 'none');
+    </script>
 </body>
 </html>

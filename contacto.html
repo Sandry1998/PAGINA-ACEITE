@@ -5,19 +5,102 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contacto - Tienda de Aceites</title>
     <link rel="stylesheet" href="./style.css">
-    <link rel="icon" href="./favicon.png">
+    <link rel="icon" href="./IMAGENES/favicon.png">
+    <style>
+        /* Moderno para el menú desplegable */
+        .dropdown-productos:hover > a, .dropdown-productos:focus-within > a {
+            color: #bfa14a;
+        }
+        .submenu-productos li a:hover, .submenu-productos li a:focus {
+            background: #bfa14a;
+            color: #fff;
+        }
+        .dropdown-productos > a span {
+            display:inline-block;
+            transition: transform 0.2s;
+        }
+        .dropdown-productos:hover > a span, .dropdown-productos:focus-within > a span {
+            transform: rotate(180deg);
+        }
+        /* Mejoras generales */
+        body {
+            background: linear-gradient(120deg, #fffbe6 0%, #f7ecd0 100%);
+            font-family: 'Segoe UI', 'Arial', sans-serif;
+            color: #3a2c13;
+            margin: 0;
+            min-height: 100vh;
+        }
+        .header-tienda {
+            border-bottom: 2px solid #bfa14a22;
+            box-shadow: 0 2px 16px #bfa14a11;
+            padding-bottom: 0;
+        }
+        .logo-tienda img {
+            transition: transform 0.2s;
+        }
+        .logo-tienda img:hover {
+            transform: scale(1.07) rotate(-3deg);
+        }
+        .nav-tienda ul {
+            background: #fff8e1;
+            padding: 18px 40px;
+            border-radius: 18px;
+            box-shadow: 0 2px 16px #bfa14a22;
+            align-items: center;
+            display: flex;
+            gap: 36px;
+        }
+        .nav-tienda a, .nav-tienda button {
+            font-size: 1.08rem;
+            font-weight: 600;
+            color: #3a2c13;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .nav-tienda a:hover, .nav-tienda button:hover {
+            color: #bfa14a;
+        }
+        main {
+            min-height: 120px;
+        }
+        .footer-tienda {
+            background: #fff8e1;
+            color: #bfa14a;
+            text-align: center;
+            padding: 24px 0 8px 0;
+            border-top: 2px solid #bfa14a22;
+            font-size: 1.08rem;
+            margin-top: 48px;
+        }
+        .footer-tienda a {
+            color: #bfa14a;
+            text-decoration: underline;
+        }
+        @media (max-width: 900px) {
+            .nav-tienda ul {
+                flex-direction: column;
+                gap: 18px;
+                padding: 18px 10px;
+            }
+        }
+        @media (max-width: 600px) {
+            .logo-tienda img {
+                width: 90px;
+                height: 90px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <header class="header-tienda">
-        <div class="logo-tienda">
-            <img src="./IMAGENES/OIP2.png" alt="Logo Tienda Aceite" style="width: 120px; height: 120px;">
-            <h1>Tienda de Aceites Premium</h1>
+    <header class="header-tienda" style="background: #fff;">
+        <div class="logo-tienda" style="display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0 auto 12px auto;">
+            <img src="./IMAGENES/logo.png" alt="Logo Tienda Aceite" style="width: 140px; height: 140px; margin-bottom: 8px; filter: drop-shadow(0 4px 16px #bfa14a88);">
+            <h1 style="text-align:center;color:#bfa14a;font-size:2.5rem;font-weight:900;letter-spacing:1.5px;text-shadow:0 2px 12px #bfa14a33,0 1px 0 #fff;">TIENDA DE ACEITES PREMIUM</h1>
         </div>
         <nav class="nav-tienda">
             <ul>
                 <li><a href="index.html">Inicio</a></li>
                 <li><a href="historia.html">Historia</a></li>
-                <li><a href="productos.html">Productos</a></li>
                 <li><a href="contacto.html">Contacto</a></li>
             </ul>
         </nav>
@@ -25,6 +108,11 @@
     <main>
         <section class="contacto-tienda">
             <h2>Contacto</h2>
+            <div class="galeria-contacto" style="display:flex;flex-wrap:wrap;gap:24px;justify-content:center;align-items:center;margin-bottom:32px;">
+                <img src="./IMAGENES/BOTELLAS/botella2.png" alt="Aceite Arbequina" style="width:140px;height:180px;object-fit:contain;border-radius:12px;box-shadow:0 2px 8px #bfa14a22;background:#fff;">
+                <img src="./IMAGENES/BOTELLAS/botella4.png" alt="Aceite Cornicabra" style="width:140px;height:180px;object-fit:contain;border-radius:12px;box-shadow:0 2px 8px #bfa14a22;background:#fff;">
+                <img src="./IMAGENES/BOTELLAS/botella1.png" alt="Aceite Picual" style="width:140px;height:180px;object-fit:contain;border-radius:12px;box-shadow:0 2px 8px #bfa14a22;background:#fff;">
+            </div>
             <form class="form-contacto">
                 <label for="nombre">Nombre</label>
                 <input type="text" id="nombre" name="nombre" required>

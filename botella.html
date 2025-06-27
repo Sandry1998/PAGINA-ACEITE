@@ -2,10 +2,171 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="refresh" content="0; url=index.html">
-    <title>Redirigiendo...</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Botellas - Tienda de Aceites</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="icon" href="./IMAGENES/favicon.png">
+    <script src="./carrito.js" defer></script>
+    <style>
+        /* Moderno para el menú desplegable */
+        .dropdown-productos:hover > a, .dropdown-productos:focus-within > a {
+            color: #bfa14a;
+        }
+        .submenu-productos li a:hover, .submenu-productos li a:focus {
+            background: #bfa14a;
+            color: #fff;
+        }
+        .dropdown-productos > a span {
+            display:inline-block;
+            transition: transform 0.2s;
+        }
+        .dropdown-productos:hover > a span, .dropdown-productos:focus-within > a span {
+            transform: rotate(180deg);
+        }
+        /* Mejoras generales */
+        body {
+            background: linear-gradient(120deg, #fffbe6 0%, #f7ecd0 100%);
+            font-family: 'Segoe UI', 'Arial', sans-serif;
+            color: #3a2c13;
+            margin: 0;
+            min-height: 100vh;
+        }
+        .header-tienda {
+            border-bottom: 2px solid #bfa14a22;
+            box-shadow: 0 2px 16px #bfa14a11;
+            padding-bottom: 0;
+        }
+        .logo-tienda img {
+            transition: transform 0.2s;
+        }
+        .logo-tienda img:hover {
+            transform: scale(1.07) rotate(-3deg);
+        }
+        .nav-tienda ul {
+            background: #fff8e1;
+            padding: 18px 40px;
+            border-radius: 18px;
+            box-shadow: 0 2px 16px #bfa14a22;
+            align-items: center;
+            display: flex;
+            gap: 36px;
+        }
+        .nav-tienda a, .nav-tienda button {
+            font-size: 1.08rem;
+            font-weight: 600;
+            color: #3a2c13;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .nav-tienda a:hover, .nav-tienda button:hover {
+            color: #bfa14a;
+        }
+        main {
+            min-height: 120px;
+        }
+        .footer-tienda {
+            background: #fff8e1;
+            color: #bfa14a;
+            text-align: center;
+            padding: 24px 0 8px 0;
+            border-top: 2px solid #bfa14a22;
+            font-size: 1.08rem;
+            margin-top: 48px;
+        }
+        .footer-tienda a {
+            color: #bfa14a;
+            text-decoration: underline;
+        }
+        @media (max-width: 900px) {
+            .nav-tienda ul {
+                flex-direction: column;
+                gap: 18px;
+                padding: 18px 10px;
+            }
+        }
+        @media (max-width: 600px) {
+            .logo-tienda img {
+                width: 90px;
+                height: 90px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <p>Redirigiendo a la página principal...</p>
+    <header class="header-tienda" style="background: #fff;">
+        <div class="logo-tienda" style="display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0 auto 12px auto;">
+            <img src="./IMAGENES/logo.png" alt="Logo Tienda Aceite" style="width: 140px; height: 140px; margin-bottom: 8px; filter: drop-shadow(0 4px 16px #bfa14a88);">
+            <h1 style="text-align:center;color:#bfa14a;font-size:2.5rem;font-weight:900;letter-spacing:1.5px;text-shadow:0 2px 12px #bfa14a33,0 1px 0 #fff;">TIENDA DE ACEITES PREMIUM</h1>
+        </div>
+        <nav class="nav-tienda">
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="historia.html">Historia</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+                <li><button id="icono-carrito" style="background:none;border:none;cursor:pointer;"><img src="https://cdn-icons-png.flaticon.com/512/1170/1170678.png" alt="Carrito" style="width:32px;height:32px;vertical-align:middle;"></button></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="productos-tienda">
+            <h2>BOTELLAS DE ACEITE</h2>
+            <div class="productos-grid">
+                <article class="producto-card">
+                    <img src="./IMAGENES/BOTELLAS/botella2.png" alt="Aceite Cornicabra" style="width: 140px; height: 180px; object-fit: contain; border-radius: 12px; box-shadow: 0 2px 8px #bfa14a22; background: #fff; margin-bottom: 8px;">
+                    <h3>AOVE Cornicabra 500ml</h3>
+                    <p class="precio">9,00€</p>
+                    <p class="desc">Aceite virgen extra de aceituna Cornicabra, sabor frutado y fresco, aromas de hojas verdes, almendra y tomate.</p>
+                    <label for="cantidad-cornicabra">Cantidad</label>
+                    <select id="cantidad-cornicabra" name="cantidad-cornicabra">
+                        <option value="0" selected>0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                    </select>
+                    <button class="btn-comprar">Añadir al carrito</button>
+                </article>
+                <article class="producto-card">
+                    <img src="./IMAGENES/BOTELLAS/botella4.png" alt="Aceite Picual" style="width: 140px; height: 180px; object-fit: contain; border-radius: 12px; box-shadow: 0 2px 8px #bfa14a22; background: #fff; margin-bottom: 8px;">
+                    <h3>AOVE Picual 500ml</h3>
+                    <p class="precio">5,10€</p>
+                    <p class="desc">Aceite virgen extra de aceituna Picual, gran fuerza y cuerpo, sabor con notas de madera, plátano y hierba recién cortada.</p>
+                    <label for="cantidad-picual">Cantidad</label>
+                    <select id="cantidad-picual" name="cantidad-picual">
+                        <option value="0" selected>0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                    </select>
+                    <button class="btn-comprar">Añadir al carrito</button>
+                </article>
+                <article class="producto-card">
+                    <img src="./IMAGENES/BOTELLAS/botella1.png" alt="Aceite Arbequina" style="width: 140px; height: 180px; object-fit: contain; border-radius: 12px; box-shadow: 0 2px 8px #bfa14a22; background: #fff; margin-bottom: 8px;">
+                    <h3>AOVE Arbequina 500ml</h3>
+                    <p class="precio">6,10€</p>
+                    <p class="desc">Aceite de aceitunas arbequina, frutado verde medio, intensidad alta, notas de manzana y frutos secos.</p>
+                    <label for="cantidad-arbequina">Cantidad</label>
+                    <select id="cantidad-arbequina" name="cantidad-arbequina">
+                        <option value="0" selected>0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                    </select>
+                    <button class="btn-comprar">Añadir al carrito</button>
+                </article>
+            </div>
+        </section>
+    </main>
+    <footer class="footer-tienda">
+        <p>&copy; 2025 Tienda de Aceites Premium. Todos los derechos reservados.</p>
+    </footer>
 </body>
 </html>
