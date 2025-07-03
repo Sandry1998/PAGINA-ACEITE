@@ -8,60 +8,60 @@
     <link rel="icon" href="./IMAGENES/favicon.png">
     <script src="./carrito.js" defer></script>
     <style>
-            /* Moderno para el menú desplegable */
-            .dropdown-productos:hover > a, .dropdown-productos:focus-within > a {
-                color: #bfa14a;
-            }
-            .submenu-productos li a:hover, .submenu-productos li a:focus {
-                background: #bfa14a;
-                color: #fff;
-            }
-            .dropdown-productos > a span {
-                display:inline-block;
-                transition: transform 0.2s;
-            }
-            .dropdown-productos:hover > a span, .dropdown-productos:focus-within > a span {
-                transform: rotate(180deg);
-            }
-            /* Mejoras generales */
-            body {
-                background: linear-gradient(120deg, #fffbe6 0%, #f7ecd0 100%);
-                font-family: 'Segoe UI', 'Arial', sans-serif;
-                color: #3a2c13;
-                margin: 0;
-                min-height: 100vh;
-            }
-            .header-tienda {
-                border-bottom: 2px solid #bfa14a22;
-                box-shadow: 0 2px 16px #bfa14a11;
-                padding-bottom: 0;
-            }
-            .logo-tienda img {
-                transition: transform 0.2s;
-            }
-            .logo-tienda img:hover {
-                transform: scale(1.07) rotate(-3deg);
-            }
-            .nav-tienda ul {
-                background: #fff8e1;
-                padding: 18px 40px;
-                border-radius: 18px;
-                box-shadow: 0 2px 16px #bfa14a22;
-                align-items: center;
-                display: flex;
-                gap: 36px;
-            }
-            .nav-tienda a, .nav-tienda button {
-                font-size: 1.08rem;
-                font-weight: 600;
-                color: #3a2c13;
-                text-decoration: none;
-                transition: color 0.2s;
-            }
-            .nav-tienda a:hover, .nav-tienda button:hover {
-                color: #bfa14a;
-            }
-          .btn-nav {
+             /* Moderno para el menú desplegable */
+        .dropdown-productos:hover > a, .dropdown-productos:focus-within > a {
+            color: #bfa14a;
+        }
+        .submenu-productos li a:hover, .submenu-productos li a:focus {
+            background: #bfa14a;
+            color: #fff;
+        }
+        .dropdown-productos > a span {
+            display:inline-block;
+            transition: transform 0.2s;
+        }
+        .dropdown-productos:hover > a span, .dropdown-productos:focus-within > a span {
+            transform: rotate(180deg);
+        }
+        /* Mejoras generales */
+        body {
+            background: linear-gradient(120deg, #fffbe6 0%, #f7ecd0 100%);
+            font-family: 'Segoe UI', 'Arial', sans-serif;
+            color: #3a2c13;
+            margin: 0;
+            min-height: 100vh;
+        }
+        .header-tienda {
+            border-bottom: 2px solid #bfa14a22;
+            box-shadow: 0 2px 16px #bfa14a11;
+            padding-bottom: 0;
+        }
+        .logo-tienda img {
+            transition: transform 0.2s;
+        }
+        .logo-tienda img:hover {
+            transform: scale(1.07) rotate(-3deg);
+        }
+        .nav-tienda ul {
+            background: #fff8e1;
+            padding: 18px 40px;
+            border-radius: 18px;
+            box-shadow: 0 2px 16px #bfa14a22;
+            align-items: center;
+            display: flex;
+            gap: 36px;
+        }
+        .nav-tienda a, .nav-tienda button {
+            font-size: 1.08rem;
+            font-weight: 600;
+            color: #3a2c13;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .nav-tienda a:hover, .nav-tienda button:hover {
+            color: #bfa14a;
+        }
+        .btn-nav {
             background: linear-gradient(90deg, #fffbe6 60%, #f7ecd0 100%);
             color: #bfa14a;
             border: 2px solid #bfa14a44;
@@ -212,32 +212,17 @@
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(12px); }
         }
-        .btn-nav, .btn-nav-sub, .btn-comprar, .btn-enviar, #btn-volver-inicio {
-            background: linear-gradient(90deg, #6b8e23 60%, #23281a 100%);
-            color: #fff !important;
-            border: 2px solid #23281a;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px #bfcf9c44;
-            font-weight: 700;
-            transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.15s;
-        }
-        .btn-nav:hover, .btn-nav:focus, .btn-nav:active,
-        .btn-nav-sub:hover, .btn-nav-sub:focus, .btn-nav-sub:active,
-        .btn-comprar:hover, .btn-enviar:hover, #btn-volver-inicio:hover {
-            background: linear-gradient(90deg, #23281a 60%, #6b8e23 100%);
-            color: #fff !important;
-            box-shadow: 0 4px 16px #23281a44;
-            transform: translateY(-2px) scale(1.04);
-        }
     </style>
 </head>
 <body>
-    <header class="header-tienda" style="background: #fff;">
-        <div class="logo-tienda" style="display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0 auto 12px auto;">
-            <img src="./IMAGENES/logo.png" alt="Logo Tienda Aceite" style="width: 140px; height: 140px; margin-bottom: 8px; filter: drop-shadow(0 4px 16px #bfa14a88);">
-            <h1 style="text-align:center;color:#bfa14a;font-size:2.5rem;font-weight:900;letter-spacing:1.5px;text-shadow:0 2px 12px #bfa14a33,0 1px 0 #fff;">TIENDA DE ACEITES PREMIUM</h1>
+     <header style="background:#fffbe6;padding:20px 0 10px 0;text-align:center;">
+        <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;max-width:700px;margin:0 auto;">
+            <img src="./IMAGENES/logo.png" alt="Logo Tienda Aceite" style="width:180px;height:180px;margin:0 auto;">
+            <h1 style="color:#bfa14a;font-size:3.2rem;margin:0;text-align:center;font-weight:900;letter-spacing:2px;text-shadow:0 2px 16px #bfa14a33,0 1px 0 #fff;">
+                TIENDA DE ACEITES<br>PREMIUM
+            </h1>
         </div>
-        <nav style="margin-top:18px;display:flex;justify-content:center;gap:18px;flex-wrap:wrap;align-items:center;">
+        <nav style="margin-top:18px;display:flex;justify-content:center;gap:18px;flex-wrap:wrap;">
             <a href="index.html" class="btn-nav">Inicio</a>
             <div class="dropdown-productos" style="display:inline-block;position:relative;">
                 <a href="#" id="dropdownToggle" class="btn-nav">Productos &#9662;</a>
@@ -248,7 +233,7 @@
             </div>
             <a href="historia.html" class="btn-nav">Historia</a>
             <a href="contacto.html" class="btn-nav">Contacto</a>
-            <a href="#" id="icono-carrito" style="margin-left:18px;position:relative;display:inline-block;">
+             <a href="#" id="icono-carrito" style="margin-left:18px;position:relative;display:inline-block;">
                 <img src="./IMAGENES/cart.png" alt="Carrito" style="width:36px;height:36px;vertical-align:middle;filter:drop-shadow(0 2px 8px #bfa14a55);">
                 <span id="contador-carrito" style="position:absolute;top:-8px;right:-8px;background:#bfa14a;color:#fff;font-size:0.95em;font-weight:700;padding:2px 7px;border-radius:50%;display:none;">0</span>
             </a>
