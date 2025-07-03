@@ -307,6 +307,71 @@ body {
 #carrito-content button:hover {
     background: #7a5c1e;
 }
+/* --- MEJORAS MENSAJE DE CONFIRMACIÓN DE COMPRA EN PAGO.HTML --- */
+#mensaje-compra {
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    min-height: 60vh;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+#mensaje-compra > div {
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 8px 32px #bfa14a33;
+    padding: 48px 32px 40px 32px;
+    max-width: 420px;
+    width: 90vw;
+    margin: 0 auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+#mensaje-compra .check-icon {
+    font-size: 3.5rem;
+    color: #4caf50;
+    background: #fff;
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 18px auto;
+    box-shadow: 0 2px 12px #bfa14a22;
+}
+#mensaje-compra .mensaje-titulo {
+    font-size: 2rem;
+    font-weight: 900;
+    color: #bfa14a;
+    margin-top: 8px;
+    letter-spacing: 1px;
+    text-shadow: 0 2px 12px #bfa14a22;
+}
+#btn-volver-inicio {
+    display: inline-block;
+    margin-top: 32px;
+    padding: 12px 36px;
+    background: linear-gradient(90deg, #bfa14a 60%, #a88c2c 100%);
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: 700;
+    border-radius: 10px;
+    text-decoration: none;
+    box-shadow: 0 2px 12px #bfa14a33;
+    transition: background 0.2s, color 0.2s;
+    border: none;
+    width: 100%;
+    max-width: 320px;
+}
+#btn-volver-inicio:hover {
+    background: linear-gradient(90deg, #a88c2c 60%, #bfa14a 100%);
+    color: #fffbe6;
+}
 @keyframes fadeIn {
     from { opacity: 0; } to { opacity: 1; }
 }
@@ -333,6 +398,22 @@ body {
     }
     .contacto-tienda {
         padding: 24px 4px 40px 4px;
+    }
+    #mensaje-compra > div {
+        padding: 32px 8vw 28px 8vw;
+        max-width: 98vw;
+    }
+    #mensaje-compra .check-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 2.2rem;
+    }
+    #mensaje-compra .mensaje-titulo {
+        font-size: 1.3rem;
+    }
+    #btn-volver-inicio {
+        font-size: 1rem;
+        padding: 10px 10px;
     }
 }
 

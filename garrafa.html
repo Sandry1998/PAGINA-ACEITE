@@ -154,7 +154,7 @@
                         <option value="5">5</option>
                         <option value="6">6</option>
                     </select>
-                    <button class="btn-comprar">Añadir al carrito</button>
+                    <button class="btn-comprar" data-nombre="Virgen Extra Ecológico 5L" data-precio="63.90">Añadir al carrito</button>
                 </article>
                 <article class="producto-card" style="flex: 1 1 220px; max-width: 240px; min-width: 200px;">
                     <img src="./IMAGENES/GARRAFAS/garrafa3.png" alt="Picual Oleo Estrella 5L" style="width: 100%; height: 140px; object-fit: contain;">
@@ -171,7 +171,7 @@
                         <option value="5">5</option>
                         <option value="6">6</option>
                     </select>
-                    <button class="btn-comprar">Añadir al carrito</button>
+                    <button class="btn-comprar" data-nombre="Picual Oleo Estrella 5L" data-precio="45.10">Añadir al carrito</button>
                 </article>
                 <article class="producto-card" style="flex: 1 1 220px; max-width: 240px; min-width: 200px;">
                     <img src="./IMAGENES/GARRAFAS/garrafa2.png" alt="AOVE Arbequina 5L" style="width: 100%; height: 140px; object-fit: contain;">
@@ -188,7 +188,7 @@
                         <option value="5">5</option>
                         <option value="6">6</option>
                     </select>
-                    <button class="btn-comprar">Añadir al carrito</button>
+                    <button class="btn-comprar" data-nombre="AOVE Arbequina 5L" data-precio="59.00">Añadir al carrito</button>
                 </article>
             </div>
         </section>
@@ -204,17 +204,19 @@
             <button id="cerrar-carrito" style="position:absolute;top:12px;right:16px;background:none;border:none;font-size:1.5em;color:#bfa14a;cursor:pointer;">&times;</button>
             <h3 style="color:#bfa14a;text-align:center;margin-bottom:18px;">Carrito de compras</h3>
             <div id="carrito-lista" style="min-height:60px;text-align:left;"></div>
-            <button id="vaciar-carrito" style="margin-top:18px;background:#bfa14a;color:#fff;border:none;padding:10px 24px;border-radius:8px;cursor:pointer;float:right;">Vaciar carrito</button>
+            <div style="display:flex;gap:12px;justify-content:flex-end;margin-top:18px;">
+                <button id="vaciar-carrito" style="background:#bfa14a;color:#fff;border:none;padding:10px 24px;border-radius:8px;cursor:pointer;">Vaciar carrito</button>
+                <a href="pago.html" id="btn-pagar" style="background:#3a2c13;color:#fff;text-align:center;text-decoration:none;padding:10px 24px;border-radius:8px;font-weight:700;font-size:1.1em;display:inline-block;">Pagar</a>
+            </div>
         </div>
     </div>
     <script>
-    // --- SISTEMA AÑADIR AL CARRITO ---
-    document.querySelectorAll('.producto-card').forEach(card => {
-        const btn = card.querySelector('.btn-comprar');
+    // --- SISTEMA UNIVERSAL AÑADIR AL CARRITO ---
+    document.querySelectorAll('.btn-comprar').forEach(btn => {
         btn.addEventListener('click', function() {
-            const nombre = card.querySelector('h3').textContent.trim();
-            const precioTexto = card.querySelector('.precio').textContent.trim().replace('€','').replace(',','.');
-            const precio = parseFloat(precioTexto);
+            const nombre = this.getAttribute('data-nombre');
+            const precio = parseFloat(this.getAttribute('data-precio'));
+            const card = this.closest('.producto-card');
             const select = card.querySelector('select');
             const cantidad = parseInt(select.value);
             if (cantidad > 0) {
@@ -228,6 +230,7 @@
                 localStorage.setItem('carrito', JSON.stringify(carrito));
                 select.value = '0';
                 if (typeof actualizarContadorCarrito === 'function') actualizarContadorCarrito();
+                if (typeof renderizarCarrito === 'function') renderizarCarrito();
             }
         });
     });

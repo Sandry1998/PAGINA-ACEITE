@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagar - Tienda de Aceites</title>
+    <link rel="stylesheet" href="./style.css">
+    <style>
+        .pago-container {
+            max-width: 400px;
+            margin: 60px auto 0 auto;
+            background: #fff8e1;
+            border-radius: 18px;
+            box-shadow: 0 8px 32px #bfa14a33;
+            padding: 32px 24px 24px 24px;
+        }
+        .pago-container h2 {
+            color: #bfa14a;
+            text-align: center;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+        .pago-container h2 img {
+            width: 36px;
+            height: 28px;
+            vertical-align: middle;
+            filter: drop-shadow(0 2px 6px #bfa14a33);
+        }
+        .form-pago label {
+            font-weight: 600;
+            color: #3a2c13;
+            display: block;
+            margin-bottom: 6px;
+        }
+        .form-pago input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #bfa14a55;
+            margin-bottom: 18px;
+            font-size: 1.1em;
+        }
+        .form-pago button {
+            width: 100%;
+            background: #bfa14a;
+            color: #fff;
+            border: none;
+            padding: 12px 0;
+            border-radius: 8px;
+            font-size: 1.15em;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 8px;
+        }
+        .form-pago button:hover {
+            background: #a88c2c;
+        }
+        .tarjeta-demo {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px #bfa14a22;
+            padding: 18px 16px;
+            margin-bottom: 18px;
+            text-align: center;
+        }
+        .tarjeta-demo span {
+            display: block;
+            color: #bfa14a;
+            font-size: 1.1em;
+            margin-bottom: 2px;
+        }
+        .resumen-pago {
+            background: #fff;
+            border-radius: 14px;
+            box-shadow: 0 2px 12px #bfa14a22;
+            padding: 18px 18px 10px 18px;
+            margin-bottom: 24px;
+            border: 1.5px solid #bfa14a33;
+            position: relative;
+        }
+        .resumen-pago ul {
+            list-style: none;
+            padding: 0 0 8px 0;
+            margin: 0;
+        }
+        .resumen-pago li {
+            margin-bottom: 7px;
+            font-size: 1.08em;
+            color: #3a2c13;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .resumen-pago .total {
+            border-top: 1.5px solid #bfa14a33;
+            padding-top: 10px;
+            text-align: right;
+            font-weight: 900;
+            color: #bfa14a;
+            font-size: 1.18em;
+            letter-spacing: 0.5px;
+        }
+        .flecha-volver {
+            position: absolute;
+            left: 18px;
+            top: 18px;
+            font-size: 3.2em;
+            color: #fff;
+            background: linear-gradient(120deg, #bfa14a 60%, #a88c2c 100%);
+            width: 64px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            box-shadow: 0 6px 24px #bfa14a55, 0 2px 8px #fffbe6cc;
+            text-decoration: none;
+            z-index: 10;
+            border: 2.5px solid #fffbe6;
+            transition: background 0.2s, color 0.2s, transform 0.18s;
+            cursor: pointer;
+            padding: 0;
+        }
+        .flecha-volver span {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .flecha-volver:hover {
+            background: linear-gradient(120deg, #3a2c13 60%, #bfa14a 100%);
+            color: #fffbe6;
+            transform: scale(1.08) rotate(-8deg);
+        }
+        body {
+            background: linear-gradient(120deg, #f7ecd0 0%, #fffbe6 100%);
+            min-height: 100vh;
+        }
+        #mensaje-compra {
+            display: none;
+            justify-content: center;
+            align-items: center;
+            min-height: 60vh;
+        }
+        #mensaje-compra > div {
+            background: #fff;
+            border-radius: 18px;
+            box-shadow: 0 8px 32px #bfa14a33;
+            padding: 48px 32px 40px 32px;
+            max-width: 420px;
+            width: 90vw;
+            margin: 0 auto;
+            text-align: center;
+        }
+        #mensaje-compra .check-icon {
+            font-size: 4.2rem;
+            color: #4caf50;
+            margin-bottom: 24px;
+        }
+        #mensaje-compra .mensaje-titulo {
+            font-size: 2rem;
+            font-weight: 900;
+            color: #bfa14a;
+            margin-top: 18px;
+            letter-spacing: 1px;
+        }
+        #mensaje-compra a {
+            display: inline-block;
+            margin-top: 32px;
+            padding: 12px 36px;
+            background: #bfa14a;
+            color: #fff;
+            font-size: 1.2rem;
+            font-weight: 700;
+            border-radius: 10px;
+            text-decoration: none;
+            box-shadow: 0 2px 12px #bfa14a33;
+            transition: background 0.2s;
+        }
+        #mensaje-compra a:hover {
+            background: #a88c2c;
+        }
+    </style>
+</head>
+<body>
+    <a href="#" id="flecha-volver" onclick="history.back();return false;" class="flecha-volver" title="Volver atrás"><span style="display:flex;align-items:center;justify-content:center;width:100%;height:100%;">&#8592;</span></a>
+    <div class="pago-container">
+        <h2 style="display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:18px;">
+            <span style="font-size:1.2em;">PAGO CON TARJETA</span>
+            <span style="display:inline-flex;align-items:center;justify-content:center;width:40px;height:28px;">
+              <svg width="38" height="28" viewBox="0 0 38 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect x="1.5" y="3.5" width="35" height="21" rx="5" fill="#fff" stroke="#bfa14a" stroke-width="2.5"/>
+                <rect x="1.5" y="8.5" width="35" height="4" fill="#bfa14a" stroke="#bfa14a" stroke-width="0"/>
+                <rect x="7" y="17" width="8" height="3" rx="1.2" fill="#bfa14a"/>
+                <rect x="23" y="17" width="8" height="3" rx="1.2" fill="#bfa14a" fill-opacity="0.5"/>
+                <circle cx="31.5" cy="10.5" r="1.5" fill="#fffbe6" stroke="#bfa14a" stroke-width="1.2"/>
+                <rect x="13.5" y="12.5" width="11" height="2" rx="1" fill="#bfa14a" fill-opacity="0.25"/>
+                <rect x="13.5" y="15.5" width="11" height="1.2" rx="0.6" fill="#bfa14a" fill-opacity="0.18"/>
+              </svg>
+            </span>
+        </h2>
+        <div id="resumen-pago" class="resumen-pago" style="margin-bottom:18px;"></div>
+        <div class="tarjeta-demo" style="margin-bottom:18px;">
+            <span>Tarjeta demo:</span>
+            <span>4111 1111 1111 1111</span>
+            <span>12/29 &nbsp; CVC: 123</span>
+        </div>
+        <form class="form-pago" onsubmit="event.preventDefault(); mostrarMensajeCompra();">
+            <label for="nombre">Nombre del titular</label>
+            <input type="text" id="nombre" name="nombre" required>
+            <label for="numero">Número de tarjeta</label>
+            <input type="text" id="numero" name="numero" maxlength="19" pattern="[0-9 ]{16,19}" placeholder="•••• •••• •••• ••••" required>
+            <label for="expira">Fecha de expiración</label>
+            <input type="text" id="expira" name="expira" maxlength="5" pattern="(0[1-9]|1[0-2])\/([0-9]{2})" placeholder="MM/AA" required>
+            <label for="cvc">CVC</label>
+            <input type="text" id="cvc" name="cvc" maxlength="4" pattern="[0-9]{3,4}" required>
+            <button type="submit">Pagar ahora</button>
+        </form>
+    </div>
+    <script>
+    // Mostrar resumen de productos y total (sin icono de carrito)
+    function renderResumenPago() {
+        let carrito = JSON.parse(localStorage.getItem('carrito') || '[]');
+        let resumen = '';
+        let total = 0;
+        if (carrito.length === 0) {
+            resumen = '<p style="color:#bfa14a;text-align:center;">No hay productos en el carrito.</p>';
+        } else {
+            resumen += '<ul>';
+            carrito.forEach(item => {
+                const precio = item.precio ? Number(item.precio) : 0;
+                total += precio * Number(item.cantidad);
+                resumen += `<li><span><b>${item.nombre}</b> x${item.cantidad}</span> <span>${precio.toFixed(2)}€</span></li>`;
+            });
+            resumen += '</ul>';
+            resumen += `<div class='total'>Total: ${total.toFixed(2)} €</div>`;
+        }
+        document.getElementById('resumen-pago').innerHTML = resumen;
+    }
+    function mostrarMensajeCompra() {
+        // Redirigir a la página de gracias tras el pago (NO vaciar el carrito aquí)
+        window.location.href = 'gracias.html';
+    }
+    document.addEventListener('DOMContentLoaded', function() {
+        renderResumenPago();
+        var btnVolver = document.getElementById('btn-volver-inicio');
+        if(btnVolver) {
+            btnVolver.addEventListener('click', function() {
+                localStorage.removeItem('carrito');
+            });
+        }
+    });
+    </script>
+</body>
+</html>

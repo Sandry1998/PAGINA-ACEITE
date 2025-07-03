@@ -135,10 +135,7 @@
                 <li><a href="index.html">Inicio</a></li>
                 <li><a href="historia.html">Historia</a></li>
                 <li><a href="contacto.html">Contacto</a></li>
-                <li><button id="icono-carrito" style="background:none;border:none;cursor:pointer;position:relative;">
-                    <img src="https://cdn-icons-png.flaticon.com/512/1170/1170678.png" alt="Carrito" style="width:32px;height:32px;vertical-align:middle;">
-                    <span id="contador-carrito" style="display:none;position:absolute;top:0;right:0;background:#bfa14a;color:#fff;font-size:0.95em;font-weight:700;border-radius:50%;padding:2px 7px;min-width:22px;text-align:center;line-height:1;box-shadow:0 2px 8px #bfa14a33;">0</span>
-                </button></li>
+                <!-- Carrito eliminado de historia.html para que solo aparezca en páginas de productos -->
             </ul>
         </nav>
     </header>
@@ -153,85 +150,6 @@
             <img src="./IMAGENES/señoras.png" alt="Señoras Aceite">
         </div>
     </main>
-    <div id="modal-carrito" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:#0007;z-index:1000;align-items:center;justify-content:center;">
-        <div style="background:#fff8e1;padding:32px 24px 24px 24px;border-radius:18px;max-width:400px;width:90vw;box-shadow:0 8px 32px #bfa14a55;position:relative;">
-            <button id="cerrar-carrito" style="position:absolute;top:12px;right:16px;background:none;border:none;font-size:1.5em;color:#bfa14a;cursor:pointer;">&times;</button>
-            <h3 style="color:#bfa14a;text-align:center;margin-bottom:18px;">Carrito de compras</h3>
-            <div id="carrito-lista" style="min-height:60px;text-align:left;"></div>
-            <button id="vaciar-carrito" style="margin-top:18px;background:#bfa14a;color:#fff;border:none;padding:10px 24px;border-radius:8px;cursor:pointer;float:right;">Vaciar carrito</button>
-        </div>
-    </div>
-    <script>
-    // --- SISTEMA AÑADIR AL CARRITO ---
-    document.querySelectorAll('.producto-card').forEach(card => {
-        const btn = card.querySelector('.btn-comprar');
-        btn.addEventListener('click', function() {
-            const nombre = card.querySelector('h3').textContent.trim();
-            const precioTexto = card.querySelector('.precio').textContent.trim().replace('€','').replace(',','.');
-            const precio = parseFloat(precioTexto);
-            const select = card.querySelector('select');
-            const cantidad = parseInt(select.value);
-            if (cantidad > 0) {
-                let carrito = JSON.parse(localStorage.getItem('carrito') || '[]');
-                let existe = carrito.find(item => item.nombre === nombre && item.precio === precio);
-                if (existe) {
-                    existe.cantidad += cantidad;
-                } else {
-                    carrito.push({ nombre, precio, cantidad });
-                }
-                localStorage.setItem('carrito', JSON.stringify(carrito));
-                select.value = '0';
-                if (typeof actualizarContadorCarrito === 'function') actualizarContadorCarrito();
-            }
-        });
-    });
-    // Carrito: mostrar productos seleccionados en modal
-    const iconoCarrito = document.getElementById('icono-carrito');
-    const modalCarrito = document.getElementById('modal-carrito');
-    const cerrarCarrito = document.getElementById('cerrar-carrito');
-    const vaciarCarrito = document.getElementById('vaciar-carrito');
-    const carritoLista = document.getElementById('carrito-lista');
-    const contadorCarrito = document.getElementById('contador-carrito');
-
-    function actualizarContadorCarrito() {
-        const carrito = JSON.parse(localStorage.getItem('carrito') || '[]');
-        const totalItems = carrito.reduce((acc, item) => acc + Number(item.cantidad), 0);
-        contadorCarrito.textContent = totalItems;
-        contadorCarrito.style.display = totalItems > 0 ? 'block' : 'none';
-    }
-
-    function renderizarCarrito() {
-        const carrito = JSON.parse(localStorage.getItem('carrito') || '[]');
-        let total = 0;
-        if (carrito.length === 0) {
-            carritoLista.innerHTML = '<p style="color:#bfa14a;text-align:center;">No hay productos en el carrito.</p>';
-        } else {
-            carritoLista.innerHTML = carrito.map(item => {
-                const precio = item.precio ? Number(item.precio) : 0;
-                total += precio * Number(item.cantidad);
-                return `<div style='margin-bottom:10px;'><b>${item.nombre}</b> x${item.cantidad} <span style='float:right;'>${precio.toFixed(2)}€</span></div>`;
-            }).join('');
-            carritoLista.innerHTML += `<div style='border-top:1px solid #bfa14a33;margin-top:12px;padding-top:10px;text-align:right;font-weight:700;color:#bfa14a;'>Total: ${total.toFixed(2)} €</div>`;
-        }
-    }
-    iconoCarrito.addEventListener('click', e => {
-        e.preventDefault();
-        renderizarCarrito();
-        modalCarrito.style.display = 'flex';
-    });
-    cerrarCarrito.addEventListener('click', () => {
-        modalCarrito.style.display = 'none';
-    });
-    vaciarCarrito.addEventListener('click', () => {
-        localStorage.removeItem('carrito');
-        renderizarCarrito();
-        actualizarContadorCarrito();
-    });
-    modalCarrito.addEventListener('click', e => {
-        if (e.target === modalCarrito) modalCarrito.style.display = 'none';
-    });
-    actualizarContadorCarrito();
-    </script>
     <footer class="footer-tienda">
         <p>&copy; 2025 Tienda de Aceites Premium. Todos los derechos reservados.</p>
     </footer>
