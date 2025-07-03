@@ -49,10 +49,6 @@
             align-items: center;
             display: flex;
             gap: 36px;
-            justify-content: center;
-        }
-        .nav-tienda ul li {
-            text-align: center;
         }
         .nav-tienda a, .nav-tienda button {
             font-size: 1.08rem;
@@ -64,50 +60,85 @@
         .nav-tienda a:hover, .nav-tienda button:hover {
             color: #bfa14a;
         }
-        main {
-            min-height: 120px;
-        }
-        .footer-tienda {
-            background: #fff8e1;
+        .btn-nav {
+            background: linear-gradient(90deg, #fffbe6 60%, #f7ecd0 100%);
             color: #bfa14a;
-            text-align: center;
-            padding: 24px 0 8px 0;
-            border-top: 2px solid #bfa14a22;
-            font-size: 1.08rem;
-            margin-top: 48px;
+            border: 2px solid #bfa14a44;
+            border-radius: 8px;
+            padding: 10px 28px;
+            font-size: 1.15rem;
+            font-weight: 700;
+            text-decoration: none;
+            margin: 0 4px;
+            box-shadow: 0 2px 8px #bfa14a22;
+            transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.15s;
+            display: inline-block;
+            outline: none;
         }
-        .footer-tienda a {
+        .btn-nav:hover, .btn-nav:focus, .btn-nav:active {
+            background: #bfa14a;
+            color: #fff !important;
+            box-shadow: 0 4px 16px #bfa14a44;
+            transform: translateY(-2px) scale(1.04);
+        }
+        .btn-nav:focus-visible {
+            outline: 2px solid #bfa14a;
+            outline-offset: 2px;
+        }
+        .btn-nav-sub {
+            background: none;
             color: #bfa14a;
-            text-decoration: underline;
+            border: none;
+            border-radius: 0;
+            padding: 10px 24px;
+            font-size: 1.05rem;
+            font-weight: 600;
+            text-decoration: none;
+            display: block;
+            transition: background 0.2s, color 0.2s;
+        }
+        .btn-nav-sub:hover, .btn-nav-sub:focus, .btn-nav-sub:active {
+            background: #bfa14a;
+            color: #fff !important;
+        }
+        .btn-comprar, .btn-enviar, #btn-volver-inicio {
+            background: linear-gradient(90deg, #6b8e23 60%, #23281a 100%);
+            color: #fff !important;
+            border: 2px solid #23281a;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px #bfcf9c44;
+            font-weight: 700;
+            transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.15s;
+        }
+        .btn-comprar:hover, .btn-enviar:hover, #btn-volver-inicio:hover {
+            background: linear-gradient(90deg, #23281a 60%, #6b8e23 100%);
+            color: #fff !important;
+            box-shadow: 0 4px 16px #23281a44;
+            transform: translateY(-2px) scale(1.04);
         }
         .galeria-historia {
             display: flex;
+            flex-direction: row;
             justify-content: center;
-            gap: 40px;
-            margin: 36px 0 32px 0;
-            flex-wrap: wrap;
+            align-items: flex-start;
+            gap: 32px;
+            margin: 32px 0 24px 0;
         }
         .galeria-historia img {
-            width: 320px;
-            height: 220px;
-            object-fit: contain;
-            border-radius: 18px;
-            box-shadow: 0 4px 24px #bfa14a33, 0 1.5px 8px #0001;
+            width: 200px;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px #bfa14a22, 0 1.5px 8px #0001;
             background: #fff;
             transition: transform 0.25s, box-shadow 0.25s, filter 0.2s;
+            cursor: pointer;
         }
         .galeria-historia img:hover {
-            transform: scale(1.08) rotate(-2deg);
-            box-shadow: 0 12px 36px #bfa14a77, 0 2px 12px #0002;
+            transform: scale(1.13) rotate(-2deg);
+            box-shadow: 0 8px 24px #bfa14a77, 0 2px 12px #0002;
             filter: brightness(1.08) saturate(1.2);
-        }
-        h2 {
-            font-size: 2.6rem !important;
-            font-weight: 900;
-            letter-spacing: 1px;
-            color: #bfa14a;
-            margin-bottom: 18px;
-            text-transform: uppercase;
+            z-index: 2;
         }
         @media (max-width: 900px) {
             .nav-tienda ul {
@@ -121,24 +152,64 @@
                 width: 90px;
                 height: 90px;
             }
+            .galeria-historia {
+                flex-direction: column;
+                gap: 18px;
+                align-items: center;
+            }
+            .galeria-historia img {
+                width: 120px;
+                height: 80px;
+            }
         }
     </style>
 </head>
 <body>
-    <header class="header-tienda" style="background: #fff;">
-        <div class="logo-tienda" style="display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0 auto 12px auto;">
-            <img src="./IMAGENES/logo.png" alt="Logo Tienda Aceite" style="width: 140px; height: 140px; margin-bottom: 8px; filter: drop-shadow(0 4px 16px #bfa14a88);">
-            <h1 style="text-align:center;color:#bfa14a;font-size:2.5rem;font-weight:900;letter-spacing:1.5px;text-shadow:0 2px 12px #bfa14a33,0 1px 0 #fff;">TIENDA DE ACEITES PREMIUM</h1>
+    <header style="background:#fffbe6;padding:20px 0 10px 0;text-align:center;">
+        <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;max-width:700px;margin:0 auto;">
+            <img src="./IMAGENES/logo.png" alt="Logo Tienda Aceite" style="width:180px;height:180px;margin:0 auto;">
+            <h1 style="color:#bfa14a;font-size:3.2rem;margin:0;text-align:center;font-weight:900;letter-spacing:2px;text-shadow:0 2px 16px #bfa14a33,0 1px 0 #fff;">
+                TIENDA DE ACEITES<br>PREMIUM
+            </h1>
         </div>
-        <nav class="nav-tienda">
-            <ul>
-                <li><a href="index.html">Inicio</a></li>
-                <li><a href="historia.html">Historia</a></li>
-                <li><a href="contacto.html">Contacto</a></li>
-                <!-- Carrito eliminado de historia.html para que solo aparezca en páginas de productos -->
-            </ul>
+        <nav style="margin-top:18px;display:flex;justify-content:center;gap:18px;flex-wrap:wrap;">
+            <a href="index.html" class="btn-nav">Inicio</a>
+            <div class="dropdown-productos" style="display:inline-block;position:relative;">
+                <a href="#" id="dropdownToggle" class="btn-nav">Productos &#9662;</a>
+                <div class="submenu-productos" style="display:none;position:absolute;left:0;top:100%;background:#fffbe6;border-radius:12px;box-shadow:0 2px 12px #bfa14a22;padding:10px 0;min-width:160px;z-index:100;">
+                    <a href="botella.html" class="btn-nav-sub">Botellas</a>
+                    <a href="garrafa.html" class="btn-nav-sub">Garrafas</a>
+                </div>
+            </div>
+            <a href="historia.html" class="btn-nav">Historia</a>
+            <a href="contacto.html" class="btn-nav">Contacto</a>
         </nav>
     </header>
+    <script>
+        // Menú desplegable para Productos SOLO al hacer clic o tocar (no hover)
+        const dropdown = document.querySelector('.dropdown-productos');
+        const submenu = dropdown.querySelector('.submenu-productos');
+        const link = dropdown.querySelector('#dropdownToggle');
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const isOpen = submenu.style.display === 'block';
+            submenu.style.display = isOpen ? 'none' : 'block';
+            dropdown.classList.toggle('open', !isOpen);
+        });
+        document.addEventListener('click', function(e) {
+            if (!dropdown.contains(e.target)) {
+                submenu.style.display = 'none';
+                dropdown.classList.remove('open');
+            }
+        });
+        link.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                submenu.style.display = 'none';
+                dropdown.classList.remove('open');
+                link.blur();
+            }
+        });
+    </script>
     <main style="max-width: 900px; margin: 0 auto; padding: 30px 10px;">
         <h2 style="text-align:center; color:#bfa14a; font-size:2.4rem; font-weight:800; letter-spacing:1px; text-shadow:0 2px 8px #0001; margin-bottom:28px;">Nuestra Historia</h2>
         <p>

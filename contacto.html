@@ -49,10 +49,6 @@
             align-items: center;
             display: flex;
             gap: 36px;
-            justify-content: center;
-        }
-        .nav-tienda ul li {
-            text-align: center;
         }
         .nav-tienda a, .nav-tienda button {
             font-size: 1.08rem;
@@ -63,6 +59,47 @@
         }
         .nav-tienda a:hover, .nav-tienda button:hover {
             color: #bfa14a;
+        }
+        .btn-nav {
+            background: linear-gradient(90deg, #fffbe6 60%, #f7ecd0 100%);
+            color: #bfa14a;
+            border: 2px solid #bfa14a44;
+            border-radius: 8px;
+            padding: 10px 28px;
+            font-size: 1.15rem;
+            font-weight: 700;
+            text-decoration: none;
+            margin: 0 4px;
+            box-shadow: 0 2px 8px #bfa14a22;
+            transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.15s;
+            display: inline-block;
+            outline: none;
+        }
+        .btn-nav:hover, .btn-nav:focus, .btn-nav:active {
+            background: #bfa14a;
+            color: #fff !important;
+            box-shadow: 0 4px 16px #bfa14a44;
+            transform: translateY(-2px) scale(1.04);
+        }
+        .btn-nav:focus-visible {
+            outline: 2px solid #bfa14a;
+            outline-offset: 2px;
+        }
+        .btn-nav-sub {
+            background: none;
+            color: #bfa14a;
+            border: none;
+            border-radius: 0;
+            padding: 10px 24px;
+            font-size: 1.05rem;
+            font-weight: 600;
+            text-decoration: none;
+            display: block;
+            transition: background 0.2s, color 0.2s;
+        }
+        .btn-nav-sub:hover, .btn-nav-sub:focus, .btn-nav-sub:active {
+            background: #bfa14a;
+            color: #fff !important;
         }
         main {
             min-height: 120px;
@@ -103,18 +140,24 @@
     </style>
 </head>
 <body>
-    <header class="header-tienda" style="background: #fff;">
-        <div class="logo-tienda" style="display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0 auto 12px auto;">
-            <img src="./IMAGENES/logo.png" alt="Logo Tienda Aceite" style="width: 140px; height: 140px; margin-bottom: 8px; filter: drop-shadow(0 4px 16px #bfa14a88);">
-            <h1 style="text-align:center;color:#bfa14a;font-size:2.5rem;font-weight:900;letter-spacing:1.5px;text-shadow:0 2px 12px #bfa14a33,0 1px 0 #fff;">TIENDA DE ACEITES PREMIUM</h1>
+    <header style="background:#fffbe6;padding:20px 0 10px 0;text-align:center;">
+        <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;max-width:700px;margin:0 auto;">
+            <img src="./IMAGENES/logo.png" alt="Logo Tienda Aceite" style="width:180px;height:180px;margin:0 auto;">
+            <h1 style="color:#bfa14a;font-size:3.2rem;margin:0;text-align:center;font-weight:900;letter-spacing:2px;text-shadow:0 2px 16px #bfa14a33,0 1px 0 #fff;">
+                TIENDA DE ACEITES<br>PREMIUM
+            </h1>
         </div>
-        <nav class="nav-tienda">
-            <ul>
-                <li><a href="index.html">Inicio</a></li>
-                <li><a href="historia.html">Historia</a></li>
-                <li><a href="contacto.html">Contacto</a></li>
-                <!-- Carrito eliminado de contacto.html para que solo aparezca en páginas de productos -->
-            </ul>
+        <nav style="margin-top:18px;display:flex;justify-content:center;gap:18px;flex-wrap:wrap;">
+            <a href="index.html" class="btn-nav">Inicio</a>
+            <div class="dropdown-productos" style="display:inline-block;position:relative;">
+                <a href="#" id="dropdownToggle" class="btn-nav">Productos &#9662;</a>
+                <div class="submenu-productos" style="display:none;position:absolute;left:0;top:100%;background:#fffbe6;border-radius:12px;box-shadow:0 2px 12px #bfa14a22;padding:10px 0;min-width:160px;z-index:100;">
+                    <a href="botella.html" class="btn-nav-sub">Botellas</a>
+                    <a href="garrafa.html" class="btn-nav-sub">Garrafas</a>
+                </div>
+            </div>
+            <a href="historia.html" class="btn-nav">Historia</a>
+            <a href="contacto.html" class="btn-nav">Contacto</a>
         </nav>
     </header>
     <main>
@@ -134,6 +177,31 @@
     <footer class="footer-tienda">
         <p>&copy; 2025 Tienda de Aceites Premium. Todos los derechos reservados.</p>
     </footer>
+    <script>
+        // Menú desplegable para Productos SOLO al hacer clic o tocar (no hover)
+        const dropdown = document.querySelector('.dropdown-productos');
+        const submenu = dropdown.querySelector('.submenu-productos');
+        const link = dropdown.querySelector('#dropdownToggle');
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const isOpen = submenu.style.display === 'block';
+            submenu.style.display = isOpen ? 'none' : 'block';
+            dropdown.classList.toggle('open', !isOpen);
+        });
+        document.addEventListener('click', function(e) {
+            if (!dropdown.contains(e.target)) {
+                submenu.style.display = 'none';
+                dropdown.classList.remove('open');
+            }
+        });
+        link.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                submenu.style.display = 'none';
+                dropdown.classList.remove('open');
+                link.blur();
+            }
+        });
+    </script>
     <!-- Modal del carrito eliminado de contacto.html para que solo aparezca en páginas de productos -->
 </body>
 </html>
