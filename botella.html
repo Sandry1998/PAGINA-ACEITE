@@ -61,50 +61,7 @@
             .nav-tienda a:hover, .nav-tienda button:hover {
                 color: #bfa14a;
             }
-            /* ESTILO DE BOTONES IGUAL QUE EN GARRAFA.HTML */
-            .btn-nav {
-                background: linear-gradient(90deg, #fffbe6 60%, #f7ecd0 100%);
-                color: #bfa14a;
-                border: 2px solid #bfa14a44;
-                border-radius: 8px;
-                padding: 10px 28px;
-                font-size: 1.15rem;
-                font-weight: 700;
-                text-decoration: none;
-                margin: 0 4px;
-                box-shadow: 0 2px 8px #bfa14a22;
-                transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.15s;
-                display: inline-block;
-                outline: none;
-            }
-            .btn-nav:hover, .btn-nav:focus, .btn-nav:active {
-                background: #bfa14a;
-                color: #fff !important;
-                box-shadow: 0 4px 16px #bfa14a44;
-                transform: translateY(-2px) scale(1.04);
-            }
-            .btn-nav:focus-visible {
-                outline: 2px solid #bfa14a;
-                outline-offset: 2px;
-            }
-            .btn-nav-sub {
-                background: none;
-                color: #bfa14a;
-                border: none;
-                border-radius: 0;
-                padding: 10px 24px;
-                font-size: 1.05rem;
-                font-weight: 600;
-                text-decoration: none;
-                display: block;
-                transition: background 0.2s, color 0.2s;
-            }
-            .btn-nav-sub:hover, .btn-nav-sub:focus, .btn-nav-sub:active {
-                background: #bfa14a;
-                color: #fff !important;
-            }
-        /* Estilos para los botones de navegación */
-        .btn-nav {
+          .btn-nav {
             background: linear-gradient(90deg, #fffbe6 60%, #f7ecd0 100%);
             color: #bfa14a;
             border: 2px solid #bfa14a44;
@@ -145,6 +102,7 @@
             background: #bfa14a;
             color: #fff !important;
         }
+   
         .productos-tienda {
             padding: 40px 20px;
             text-align: center;
@@ -279,7 +237,7 @@
             <img src="./IMAGENES/logo.png" alt="Logo Tienda Aceite" style="width: 140px; height: 140px; margin-bottom: 8px; filter: drop-shadow(0 4px 16px #bfa14a88);">
             <h1 style="text-align:center;color:#bfa14a;font-size:2.5rem;font-weight:900;letter-spacing:1.5px;text-shadow:0 2px 12px #bfa14a33,0 1px 0 #fff;">TIENDA DE ACEITES PREMIUM</h1>
         </div>
-        <nav style="margin-top:18px;display:flex;justify-content:center;gap:18px;flex-wrap:wrap;">
+        <nav style="margin-top:18px;display:flex;justify-content:center;gap:18px;flex-wrap:wrap;align-items:center;">
             <a href="index.html" class="btn-nav">Inicio</a>
             <div class="dropdown-productos" style="display:inline-block;position:relative;">
                 <a href="#" id="dropdownToggle" class="btn-nav">Productos &#9662;</a>
@@ -290,6 +248,10 @@
             </div>
             <a href="historia.html" class="btn-nav">Historia</a>
             <a href="contacto.html" class="btn-nav">Contacto</a>
+            <a href="#" id="icono-carrito" style="margin-left:18px;position:relative;display:inline-block;">
+                <img src="./IMAGENES/cart.png" alt="Carrito" style="width:36px;height:36px;vertical-align:middle;filter:drop-shadow(0 2px 8px #bfa14a55);">
+                <span id="contador-carrito" style="position:absolute;top:-8px;right:-8px;background:#bfa14a;color:#fff;font-size:0.95em;font-weight:700;padding:2px 7px;border-radius:50%;display:none;">0</span>
+            </a>
         </nav>
     </header>
     <script>
